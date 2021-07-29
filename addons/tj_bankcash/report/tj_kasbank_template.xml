@@ -1,0 +1,193 @@
+<odoo>
+    <data>
+
+        <template id="tj_kasbank_document">
+            <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <!-- <t t-set="o" t-value="o.with_context({})"/> -->
+                <div class="page">
+                    <style>
+                        .font-small {
+                            font-size: 12px !important;
+                            background-color: none;
+                        }
+
+                        .breaker {
+                            page-break-before: auto !important;
+                            page-break-inside: avoid !important;
+                        }
+                    </style>
+                    <div class="oe_structure"/>
+                    <h3 class="text-center">
+                        <div>
+                            <span><strong><u>Report Mutasi </u></strong></span>
+                            <strong><u><span t-esc="journal_id"/></u></strong>
+                        </div>
+                        <!-- <div t-if="o.journal_id.type == 'Cash'">
+                            <span><strong>REPORT SUMMARY KAS</strong></span>
+                        </div> -->
+                        <!-- <div t-if="o.journal_id.type=='Cash'">
+                            <span><strong>BUKTI PENGELUARAN KAS</strong></span>
+                        </div> -->
+                    </h3>
+                    <div style="padding-bottom:40px;"></div>
+                    <!-- <t t-if="o.start_date">
+                        <t t-set="start_date" t-value="o.start_date"/>
+                    </t> -->
+                    <!-- <t t-if="not o.start_date">
+                        <t t-set="start_date" t-value="'-'"/>
+                    </t> -->
+                    <!-- <t t-if="o.end_date">
+                        <t t-set="end_date" t-value="o.end_date"/>
+                    </t> -->
+                    <!-- <t t-if="not o.end_date">
+                        <t t-set="end_date" t-value="'-'"/>
+                    </t> -->
+                    <div style="padding-bottom:5px;">Periode : <span t-esc="date_start"/> s/d <span t-esc="date_end"/></div>
+                    <!-- <div style="padding-bottom:5px;" t-if="o.journal_id">Kas/Bank : <span t-esc="o.journal_id"/></div> -->
+                    <!--<div style="padding-bottom:5px;" t-if="o.get_categ_names()">Kategori : <span t-esc="o.get_categ_names()"/></div>
+                    <div style="padding-bottom:5px;" t-if="o.get_product_names()">Produk : <span t-esc="o.get_product_names()"/></div>
+                    <t t-if="o.per_lot">
+                        <div style="padding-bottom:5px;" t-if="o.get_lot_names()">Lot/Serial Number : <span t-esc="o.get_lot_names()"/></div>
+                    </t-->
+
+                    <div style="padding-bottom:40px;"></div>
+
+                    <table class="table table-sm font-small">
+                        <thead>
+                            <tr>
+                                <th><strong>No</strong></th>
+                                <th><strong>Code</strong></th>
+                                <th><strong>Tanggal</strong></th>
+                                <th><strong>Uraian</strong></th>
+                                <th><strong>Saldo Awal</strong></th>
+                                <th><strong>Penerimaan</strong></th>
+                                <th><strong>Pengeluaran</strong></th>
+                                <th><strong>Saldo Akhir</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="number" t-value="0"/>
+                            <t t-set="tot_awal" t-value="0"/>
+                            <t t-set="tot_masuk" t-value="0"/>
+                            <t t-set="tot_keluar" t-value="0"/>
+                            <t t-set="tot_akhir" t-value="0"/>
+                            <tr t-foreach="docs" t-as="line">                                
+                                <!-- <t t-set="akhir" t-value="line[1]+line[2]-line[3]"/>
+                                <t t-set="harga" t-value="o.get_harga(line[4])"/>
+                                <t t-set="jumlah" t-value="akhir*harga"/>
+
+                                
+                                <t t-set="tot_awal" t-value="tot_awal+line[1]"/>
+                                
+                                <t t-set="tot_akhir" t-value="tot_akhir+akhir"/>
+                                <t t-set="tot_jumlah" t-value="tot_jumlah+jumlah"/> -->
+                                <t t-set="number" t-value="number+1"/>
+                                <t t-set="tot_awal" t-value="tot_awal+line['sawal']"/>
+                                <t t-set="tot_masuk" t-value="tot_masuk+line['penerimaan']"/>
+                                <t t-set="tot_keluar" t-value="tot_keluar+line['pengeluaan']"/>
+                                <!-- <t t-set="tot_akhir" t-value="tot_akhir+line['sawal']+line['penerimaan']-line['pengeluaan']"/> -->
+                                <t t-set="tot_akhir" t-value="tot_akhir+line['sakir']"/>
+                                
+
+                                <td>
+                                    <span t-esc="number"/>
+                                </td>
+                                <td>
+                                    <!-- <span t-esc="line['name]"/> -->
+                                </td>
+                                <td>
+                                    <span t-esc="line['date']"/>
+                                </td>
+                                <td>
+                                    <span t-esc="line['name']"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="'{0:,.2f}'.format(line['sawal']).replace(',',',')"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="'{0:,.2f}'.format(line['penerimaan']).replace(',',',')"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="'{0:,.2f}'.format(line['pengeluaan']).replace(',',',')"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="'{0:,.2f}'.format(line['sakir']).replace(',',',')"/>
+                                </td>                                
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    
+                                </td>
+                                <td>
+                                    <strong>Total</strong>
+                                </td>
+                                <td>
+                                    
+                                </td>
+                                <td>
+                                        
+                                </td>
+                                <td>
+                                    <strong><span t-esc="'{0:,.2f}'.format(tot_awal).replace(',',',')"/></strong>    
+                                </td>
+                                <td>
+                                    <strong><span t-esc="'{0:,.2f}'.format(tot_masuk).replace(',',',')"/></strong>
+                                </td>
+                                <td>
+                                    <strong><span t-esc="'{0:,.2f}'.format(tot_keluar).replace(',',',')"/></strong>
+                                </td>
+                                <td>
+                                    <strong><span t-esc="'{0:,.2f}'.format(tot_akhir).replace(',',',')"/></strong>
+                                </td>                                
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- <div class="row"> -->
+                    <div class="col-xs-12 pull-center">
+                        <table class="table table-sm font-small" height="90px" width="100%">
+                            <tr>
+                                <td width="100" style="border: 1px solid black;" class="text-center"><strong>KASIR :</strong></td>
+                                <td width="100" style="border: 1px solid black;" class="text-center"><strong>DISETUJUI :</strong></td>
+                                <td width="100" style="border: 1px solid black;" class="text-center"><strong>ACCOUNTING :</strong></td>                                
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- </div> -->
+
+                    <div style="padding-bottom:40px;" class="oe_structure"/>
+                    <div>Diprint oleh : <span t-field="user.name"/></div>          
+                </div>
+            </t>
+            </t>
+        </template>
+
+        <template id="tj_kasbank_template">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="tj_bankcash.tj_kasbank_document"/>
+                </t>
+            </t>
+        </template>
+
+        <report 
+            string="Report Kas Bank" 
+            id="tj_action_kasbank" 
+            model="tj.kasbank.wizard" 
+            report_type="qweb-pdf"
+            name="tj_bankcash.tj_kasbank_template" 
+            file="tj_bankcash.tj_kasbank_template" 
+        />
+
+        <record id="record_bankcash_id" model="ir.actions.report">
+            <field name="name">Record.mutasi.bank.cash</field>
+            <field name="model">tj.kasbank.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">tj_bankcash.tj_kasbank_document</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_simpanan">
+        <t t-call="web.html_container">
+            <t t-call="koperasi.template_print">
+                <div class="page" style="font-size:15px">
+                    <t t-foreach="docs" t-as="o">
+
+                        <div class="oe_structure" />
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3>No simpanan : <span t-field="o.name" /></h3>
+                            </div><br />
+                        </div>
+                        <table class="table table-condensed">
+                            <tr>
+                                <td class="col-xs-3"><strong>Tanggal</strong></td>
+                                <td class="col-xs-3"><strong>Anggota</strong></td>
+                                <td class="col-xs-3"><strong>Master simpanan</strong></td>
+                                <td class="col-xs-3"><strong>Saldo Simpanan</strong></td>
+                                <td class="col-xs-3"><strong>Persen Jasa</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="col-xs-3"><span t-field="o.date_start" /></td>
+                                <td class="col-xs-3"><span t-field="o.partner_id.name" /></td>
+                                <td class="col-xs-3">
+                                    <span t-field="o.master_simpanan_id.name" />
+
+                                </td>
+                                <td class="col-xs-3">
+                                    <span t-esc="'{0:,.2f}'.format(float(o.saldo_akhir))" />
+                                </td>
+                                <td class="col-xs-3">
+                                    <span t-esc="'{0:,.0f}'.format(float(o.bunga_persen))" />
+                                </td>
+                            </tr>
+                        </table>
+                        <div t-if="o.simpanan_detail_ids">
+                            <h4>Details</h4>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td class="text-center"><strong>Type</strong></td>
+                                    <td class="text-center"><strong>Tanggal</strong></td>
+                                    <td class="text-center"><strong>Jumlah</strong></td>
+                                    <td class="text-center"><strong>Status</strong></td>
+                                    <td class="text-center"><strong>Account</strong></td>
+                                </tr>
+                                <tr t-foreach="o.simpanan_detail_ids" t-as="line">
+                                    <td class="text-center"><span t-field="line.type_simpanan" /></td>
+                                    <td class="text-center"><span t-field="line.date_plan" /></td>
+                                    <td class="text-right">
+                                        <span t-esc="'{0:,.2f}'.format(float(line.amount))" />
+                                    </td>
+                                    <td class="text-center"><span t-field="line.state" /></td>
+                                    <td class="text-center"><span t-field="line.account_move_id" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <data>
+        <report string="Simpanan" id="action_report_simpanan" model="simpanan" name="koperasi.report_simpanan"
+            file="koperasi.report.report_simpanan" report_type="qweb-pdf" />
+    </data>
+</odoo>

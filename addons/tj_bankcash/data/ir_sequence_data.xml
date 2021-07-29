@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- <data noupdate="1"> -->
+    <data>
+
+        <!-- Sequences Head for cash register-->
+
+        <record id="seq_ksp" model="ir.sequence">
+            <field name="name">Kas Number Keluar</field>
+            <field name="code">account.bank.statement.ksp</field>
+            <field name="prefix">KK/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_ksb" model="ir.sequence">
+            <field name="name">Kas Number Masuk</field>
+            <field name="code">account.bank.statement.ksb</field>
+            <field name="prefix">KM/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+<!--         <record id="seq_ksk" model="ir.sequence">
+            <field name="name">Kas Kecil Number</field>
+            <field name="code">account.bank.statement.ksk</field>
+            <field name="prefix">BK-KSK/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_ksn" model="ir.sequence">
+            <field name="name">Kas Noni Number</field>
+            <field name="code">account.bank.statement.ksn</field>
+            <field name="prefix">BK-KSN/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record> -->
+
+        <!-- line -->
+
+<!--         <record id="seq_ksp_line" model="ir.sequence">
+            <field name="name">Kas Pembelian Line Number</field>
+            <field name="code">account.bank.statement.line.ksp</field>
+            <field name="prefix">KSP-%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_ksb_line" model="ir.sequence">
+            <field name="name">Kas Besar Line Number</field>
+            <field name="code">account.bank.statement.line.ksb</field>
+            <field name="prefix">KSB-%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_ksk_line" model="ir.sequence">
+            <field name="name">Kas Kecil Line Number</field>
+            <field name="code">account.bank.statement.line.ksk</field>
+            <field name="prefix">KSK-%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_ksn_line" model="ir.sequence">
+            <field name="name">Kas Noni Line Number</field>
+            <field name="code">account.bank.statement.line.ksn</field>
+            <field name="prefix">KSN-%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record> -->
+
+        <!-- bank -->
+
+        <!-- GRK -->
+<!--         <record id="seq_grk" model="ir.sequence">
+            <field name="name">Giro Mundur Out Number</field>
+            <field name="code">account.bank.statement.grk</field>
+            <field name="prefix">BK-GRK/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_grk_line" model="ir.sequence">
+            <field name="name">Giro Mundur Out Line Number</field>
+            <field name="code">account.bank.statement.line.grk</field>
+            <field name="prefix">GRK/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record> -->
+
+        <!-- GRM -->
+<!--         <record id="seq_grm" model="ir.sequence">
+            <field name="name">Giro Mundur In Number</field>
+            <field name="code">account.bank.statement.grm</field>
+            <field name="prefix">BK-GRM/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_grm_line" model="ir.sequence">
+            <field name="name">Giro Mundur In Line Number</field>
+            <field name="code">account.bank.statement.line.grm</field>
+            <field name="prefix">GRM/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+ -->
+        <!-- 000 -->
+        <record id="seq_bca_000" model="ir.sequence">
+            <field name="name">BANK Number Masuk</field>
+            <field name="code">account.bank.statement.000</field>
+            <field name="prefix">BM/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+<!--         <record id="seq_bca_000_line" model="ir.sequence">
+            <field name="name">BCA 000 line Number</field>
+            <field name="code">account.bank.statement.line.000</field>
+            <field name="prefix">BCA-000/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record> -->
+
+        <!-- USD -->
+<!--         <record id="seq_bca_usd" model="ir.sequence">
+            <field name="name">BCA USD Number</field>
+            <field name="code">account.bank.statement.usd</field>
+            <field name="prefix">BCA-USD/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_bca_usd_line" model="ir.sequence">
+            <field name="name">BCA USD line Number</field>
+            <field name="code">account.bank.statement.line.usd</field>
+            <field name="prefix">USD/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record> -->
+
+        <!-- 999 -->
+        <record id="seq_bca_999" model="ir.sequence">
+            <field name="name">BCA Number Keluar</field>
+            <field name="code">account.bank.statement.999</field>
+            <field name="prefix">BK/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+<!--         <record id="seq_bca_999_line" model="ir.sequence">
+            <field name="name">BCA 999 line Number</field>
+            <field name="code">account.bank.statement.line.999</field>
+            <field name="prefix">BCA-999/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record> -->
+
+    </data>
+</odoo>

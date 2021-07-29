@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_shu_transaksi">
+        <t t-call="web.html_container">
+            <t t-call="koperasi.template_print">
+                <div class="page" style="font-size:15px">
+                    <t t-foreach="docs" t-as="o">
+
+                        <div class="oe_structure" />
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3>No Shu Transaksi : <span t-field="o.name" /></h3>
+                            </div><br />
+                        </div>
+                        <table class="table table-condensed">
+                            <tr class="text-center">
+                                <td><strong>Date</strong></td>
+                                <td><strong>Shu</strong></td>
+                                <td><strong>Jumlah Anggota</strong></td>
+                                <td><strong>Date Start</strong></td>
+                                <td><strong>Date End</strong></td>
+                            </tr>
+                            <tr class="text-center">
+                                <td><span t-field="o.date" /></td>
+                                <td><span t-field="o.shu_id" /></td>
+                                <td><span t-field="o.jum_anggota" /></td>
+                                <td><span t-field="o.date_start" /></td>
+                                <td><span t-field="o.end_date" /></td>
+                            </tr>
+                        </table>
+
+                        <table class="table table-condensed">
+                            <tr class="text-center">
+                                <td width="25%"><strong>Total Shu</strong></td>
+                                <td width="25%"><strong>Total Simpanan</strong></td>
+                                <td width="25%"><strong>Total Pinjaman</strong></td>
+                                <td width="25%"><strong>Total Shu Dibagikan</strong></td>
+                            </tr>
+                            <tr class="text-center">
+                                <td width="25%"><span t-esc="'{0:,.2f}'.format(float(o.amount_shu))" /></td>
+                                <td width="25%"><span t-esc="'{0:,.2f}'.format(float(o.amount_shu_simpanan))" /></td>
+                                <td width="25%"><span t-esc="'{0:,.2f}'.format(float(o.amount_shu_pinjaman))" /></td>
+                                <td width="25%"><span t-esc="'{0:,.2f}'.format(float(o.tot_shu_dibagikan))" /></td>
+                            </tr>
+                        </table>
+                        <table class="table table-condensed">
+                            <tr class="text-center">
+                                <td width="25%"><strong>SHU % Modal</strong></td>
+                                <td width="25%"><strong>SHU % Simpanan</strong></td>
+                                <td width="25%"><strong>SHU % Pinjaman</strong></td>
+                                <td width="25%"><strong>SHU % Cadangan</strong></td>
+                            </tr>
+                            <tr class="text-center">
+                                <td width="25%"><span t-esc="'{0:,.0f}'.format(float(o.persen_shu_modal))" /></td>
+                                <td width="25%"><span t-esc="'{0:,.0f}'.format(float(o.persen_shu_simpanan))" /></td>
+                                <td width="25%"><span t-esc="'{0:,.0f}'.format(float(o.persen_shu_pinjaman))" /></td>
+                                <td width="25%"><span t-esc="'{0:,.0f}'.format(float(o.persen_shu_cadangan))" /></td>
+                            </tr>
+                        </table>
+                        <table class="table table-condensed">
+                            <tr class="text-center">
+                                <td width="25%"><strong>Nilai SHU Modal</strong></td>
+                                <td width="25%"><strong>Nilai SHU Simpanan</strong></td>
+                                <td width="25%"><strong>Nilai SHU Pinjaman</strong></td>
+                                <td width="25%"><strong>Nilai SHU Cadangan</strong></td>
+                            </tr>
+                            <tr class="text-center">
+                                <td width="25%"><span t-esc="'{0:,.2f}'.format(float(o.nilai_shu_modal))" /></td>
+                                <td width="25%"><span t-esc="'{0:,.2f}'.format(float(o.nilai_shu_simpanan))" /></td>
+                                <td width="25%"><span t-esc="'{0:,.2f}'.format(float(o.nilai_shu_pinjaman))" /></td>
+                                <td width="25%"><span t-esc="'{0:,.2f}'.format(float(o.nilai_shu_cadangan))" /></td>
+                            </tr>
+                        </table>
+
+
+                        <div t-if="o.shu_transaksi_detail_ids">
+                            <h4>Details</h4>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td><strong>Date</strong></td>
+                                    <td><strong>Shu Transaksi</strong></td>
+                                    <td><strong>Anggota</strong></td>
+                                    <td><strong>Simpanan Anggota</strong></td>
+                                    <td><strong>Pinjaman Anggota</strong></td>
+                                    <td><strong>Shu Anggota</strong></td>
+                                </tr>
+                                <tr t-foreach="o.shu_transaksi_detail_ids" t-as="line">
+                                    <td><span t-field="line.date" /></td>
+                                    <td><span t-field="line.shu_transaksi_id" /></td>
+                                    <td><span t-field="line.partner_id" /></td>
+
+                                    <td class="text-right"><span t-esc="'{0:,.2f}'.format(float(line.amount_shu_simpanan_anggota))" /></td>
+                                    <td class="text-right"><span t-esc="'{0:,.2f}'.format(float(line.amount_shu_pinjaman_anggota))" /></td>
+                                    <td class="text-right"><span t-esc="'{0:,.2f}'.format(float(line.amount_shu_anggota))" /></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <data>
+        <report string="Shu Transaksi" id="action_report_shu_transaksi" model="shu.transaksi"
+            name="koperasi.report_shu_transaksi" file="koperasi.report.report_shu_transaksi" report_type="qweb-pdf" />
+    </data>
+</odoo>

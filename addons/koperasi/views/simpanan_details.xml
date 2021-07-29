@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="view_simpanan_details_search" model="ir.ui.view">
+            <field name="name">simpanan.details.search</field>
+            <field name="model">simpanan.details</field>
+            <field name="arch" type="xml">
+                <search string="Simpanan">
+                    <field name="partner_id" />
+                </search>
+            </field>
+        </record>
+
+
+        <record id="simpanan_details_form" model="ir.ui.view">
+            <field name="name">simpanan details</field>
+            <field name="model">simpanan.details</field>
+            <field name="arch" type="xml">
+                <form string="simpanan details Form">
+                    <header>
+                        <button name="create_invoice" string="Create Invoice" type="object" class="oe_highlight"
+                            attrs="{'invisible': [('invoice_id', '!=', False)]}" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="simpanan_id" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                <field name="partner_id" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                <field name="date_plan" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                            </group>
+                            <group>
+                                <field name="policy_id" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                <!-- <field name="type_pelunasan"/> -->
+
+                            </group>
+
+
+                            <group>
+                                <field name="type_simpanan" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                <field name="amount" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                <field name="bunga_persen" />
+                            </group>
+                            <group>
+                                <field name="invoice_id" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                <field name="account_move_id" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                <!-- <field name="jumlah_pokok_perbulan"/>
+                                <field name="jumlah_jasa_perbulan"/> -->
+
+                            </group>
+
+                            <!-- <group>
+                                <field name="note_field"/>
+                                
+                                
+                            </group> -->
+
+                        </group>
+                        <notebook>
+                            <page string="Note">
+                                <field name="note_field" />
+                            </page>
+                            <!-- <page string="Invoice">
+                                <field name="invoice_ids"/>
+                            </page>
+                            <page string="Image">
+                                <field name="detail_image_ids"/>
+                            </page> -->
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="simpanan_details_tree" model="ir.ui.view">
+            <field name="name">simpanan details</field>
+            <field name="model">simpanan.details</field>
+            <field name="arch" type="xml">
+                <tree string="simpanan details Tree">
+                    <field name="name" />
+                    <field name="name" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                    <field name="simpanan_id" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                    <field name="partner_id" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                    <field name="date_plan" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                    <field name="type_simpanan" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                    <field name="amount" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                    <field name="bunga_persen" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                    <field name="policy_id" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                    <field name="invoice_id" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                    <field name="note_field" />
+                    <field name="state" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                    <button name="action_journal_simpanan_detail" string="Post" type="object" class="btn-success"
+                        attrs="{'invisible': [('state', '!=', 'draft')]}" />
+
+                    <button name="action_batal_journal_simpanan_detail" string="Batal" type="object" class="btn-danger"
+                        attrs="{'invisible':[('state', '!=', 'posted')]}" />
+                    <field name="account_move_id" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                </tree>
+            </field>
+        </record>
+    </data>
+
+</odoo>

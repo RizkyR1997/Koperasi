@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <data>
+
+                <record id="view_pinjaman_search" model="ir.ui.view">
+                        <field name="name">pinjaman.search</field>
+                        <field name="model">pinjaman</field>
+                        <field name="arch" type="xml">
+                                <search string="Pinjaman">
+                                        <field name="partner_id" />
+                                </search>
+                        </field>
+                </record>
+
+
+                <!-- model.name form view -->
+                <record id="pinjaman_view_form" model="ir.ui.view">
+                        <field name="name">pinjaman.view.form</field>
+                        <field name="model">pinjaman</field>
+                        <field name="arch" type="xml">
+                                <form string="">
+                                        <header>
+                                                <field name="is_generate_pinjaman" invisible="1" />
+
+                                                <button name="action_generate_angsuran" string="Generate Angsuran"
+                                                        type="object" class="oe_highlight"
+                                                        attrs="{'invisible':[('state', '!=', 'draft')]}" />
+                                                <!-- ,('is_generate_pinjaman', '=', True) -->
+
+                                                <button name="action_to_be_approve" string="To Be Approve" type="object"
+                                                        class="oe_highlight"
+                                                        attrs="{'invisible':[('state', '!=', 'confirmed')]}" />
+
+                                                <button name="action_approved" string="Approved" type="object"
+                                                        class="oe_highlight"
+                                                        attrs="{'invisible':[('state', '!=', 'to_be_approve')]}" />
+
+                                                <button name="action_rejected_by_approver" string="Rejected"
+                                                        type="object" class="oe_highlight"
+                                                        attrs="{'invisible':[('state', '!=', 'to_be_approve')]}" />
+
+                                                <button name="action_done" string="Done" type="object"
+                                                        class="oe_highlight"
+                                                        attrs="{'invisible':[('state', '!=', 'approved')]}" />
+
+                                                <button name="action_closed" string="Closed" type="object"
+                                                        class="oe_highlight"
+                                                        attrs="{'invisible':[('state', '!=', 'done')]}" />
+
+                                                <field name="state" widget="statusbar" />
+                                        </header>
+                                        <sheet>
+                                                <div class="oe_button_box" name="button_box">
+                                                        <button name="action_view_journal" type="object"
+                                                                class="oe_stat_button" icon="fa-pencil-square-o"
+                                                                attrs="{'invisible': [('journal_count', '=', 0)]}">
+                                                                <field name="journal_count" widget="statinfo"
+                                                                        string="Journal" />
+                                                        </button>
+                                                </div>
+                                                <div class="oe_title">
+                                                        <h1>
+                                                                <field name="name" readonly="1" />
+                                                        </h1>
+                                                </div>
+                                                <group>
+                                                        <!-- Add your fields here -->
+                                                        <group>
+                                                                <!-- <field name="state"/> -->
+                                                                <field name="partner_id"
+                                                                        attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                                                <field name="master_pinjaman_id"
+                                                                        attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                                                <field name="jasa_persen" />
+                                                                <field name="jasa_persen_bulan" />
+                                                                <field name="no_rekening" />
+                                                                <field name="keterangan" />
+                                                                <field name="jangka_waktu"
+                                                                        attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                                                <field name="s_sukarela_persen" />
+                                                                <field name="s_sukarela_amount" />
+                                                                <field name="tgl_pencairan"
+                                                                        attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                                                <field name="tgl_angsuran_terakhir"
+                                                                        attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                                                <field name="jumlah_angsuran"
+                                                                        attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                                                <field name="total_angsuran" />
+                                                                <field name="sisa_pinjaman" />
+                                                        </group>
+                                                        <group>
+                                                                <field name="date"
+                                                                        attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                                                <field name="no_anggota" />
+                                                                <field name="no_npk" />
+                                                                <field name="nama_bank" />
+                                                                <field name="jumlah_pinjaman"
+                                                                        attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                                                <field name="biaya_adm"
+                                                                        attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                                                <field name="j_sosial_persen" />
+                                                                <field name="j_sosial_amount" />
+                                                                <field name="tgl_selesai"
+                                                                        attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                                                <field name="jumlah_jasa" />
+                                                                <field name="jumlah_pokok" />
+                                                                <field name="total_kali_angsuran" />
+                                                                <field name="sisa_angsuran" />
+                                                                <field name="jumlah_pokok_perbulan" />
+                                                                <field name="jumlah_jasa_perbulan" />
+                                                        </group>
+                                                </group>
+                                                <notebook>
+                                                        <page string="Detail">
+                                                                <field name="pinjaman_detail_ids">
+                                                                        <tree editable="buttom">
+                                                                                <field name="angsuran_ke" />
+                                                                                <field name="tgl_angsuran" />
+                                                                                <field name="name" />
+                                                                                <field name="type_pinjaman" />
+                                                                                <field name="jumlah_pokok_perbulan"
+                                                                                        sum="jumlah_pokok_perbulan" />
+                                                                                <field name="jumlah_jasa_perbulan"
+                                                                                        sum="jumlah_jasa_perbulan" />
+                                                                                <field name="rencana_angsuran" />
+                                                                                <field name="actual_angsuran"
+                                                                                        sum="actual_angsuran" />
+                                                                                <field name="saldo_pinjaman" />
+                                                                                <field name="status" />
+                                                                                <!-- <field name="state"/> -->
+                                                                                <field name="state" invisible="1" />
+                                                                                <button name="action_bayar_angsuran"
+                                                                                        string="Bayar" type="object"
+                                                                                        class="btn-success"
+                                                                                        attrs="{'invisible': ['|',('status','=','paid'),('type_pinjaman', '=', 'outbound')]}" />
+
+                                                                                <button name="action_batal_bayar_angsuran"
+                                                                                        string="Batal" type="object"
+                                                                                        class="btn-danger"
+                                                                                        attrs="{'invisible':['|',('state', '!=', 'draft'),('type_pinjaman','=','outbound')]}" />
+                                                                                <button name="%(action_report_pinjaman_details)d" type="action" icon="fa-print"/>
+                                                                                <field name="account_move_id" />
+                                                                                <field name="pelunasan_id" />
+                                                                        </tree>
+                                                                </field>
+                                                        </page>
+                                                        <page string="Image">
+                                                                <field name="detail_image_ids" />
+                                                        </page>
+                                                        <page string="Invoice">
+                                                                <field name="invoice_ids" />
+                                                        </page>
+                                                        <page string="Note">
+                                                                <field name="note_field" />
+                                                        </page>
+                                                </notebook>
+                                        </sheet>
+                                </form>
+                        </field>
+                </record>
+
+                <record id="pinjaman_tree" model="ir.ui.view">
+                        <field name="name">Pinjaman</field>
+                        <field name="model">pinjaman</field>
+                        <field name="arch" type="xml">
+                                <tree string="Pinjaman Tree">
+                                        <field name="name" />
+
+                                        <field name="date" />
+
+                                        <field name="partner_id" />
+                                        <field name="no_anggota" />
+                                        <field name="city" />
+                                        <field name="salesperson_id" />
+                                        <field name="no_anggota" />
+                                        <!-- <field name="no_npk"/>
+                                <field name="no_rekening"/>
+                                <field name="nama_bank"/>
+                                <field name="keterangan"/> -->
+                                        <field name="jumlah_pinjaman" />
+                                        <field name="jangka_waktu" />
+                                        <!-- <field name="master_pinjaman_id"/> -->
+                                        <!-- <field name="jasa_persen"/> -->
+                                        <field name="jasa_persen_bulan" />
+                                        <field name="biaya_adm" />
+                                        <!-- <field name="s_sukarela_persen"/> -->
+                                        <field name="s_sukarela_amount" />
+                                        <!-- <field name="j_sosial_persen"/> -->
+                                        <field name="j_sosial_amount" />
+                                        <!-- <field name="tgl_pencairan"/>
+                                <field name="tgl_selesai"/>
+                                <field name="tgl_angsuran_terakhir"/> -->
+                                        <field name="jumlah_pokok" />
+                                        <field name="jumlah_jasa" />
+                                        <!-- <field name="jumlah_angsuran"/> -->
+
+                                        <field name="total_angsuran" />
+                                        <field name="total_kali_angsuran" />
+                                        <field name="sisa_pinjaman" />
+                                        <field name="sisa_angsuran" />
+                                        <field name="state" />
+                                </tree>
+                        </field>
+                </record>
+
+        </data>
+</odoo>

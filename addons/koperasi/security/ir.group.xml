@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record model="res.groups" id="group_koperasi_user">
+            <field name="name">Koperasi Users</field>
+        </record>
+
+    </data>
+</odoo>

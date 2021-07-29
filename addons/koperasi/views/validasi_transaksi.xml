@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- Add you code here -->
+
+        <!-- validasi.transaksi form view -->
+        <record id="validasi_transaksi_view_form" model="ir.ui.view">
+            <field name="name">validasi.transaksi.view.form</field>
+            <field name="model">validasi.transaksi</field>
+            <field name="arch" type="xml">
+                <form string="">
+                <header>
+                    <button name="action_get_transaction" string="Get Trasanction" type="object" class="oe_highlight"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_journal" type="object" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('journal_count', '=', 0)]}">
+                                <field name="journal_count" widget="statinfo" string="Journal"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <!-- <field name="name"/> -->
+                            <field name="date"/>
+                            <field name="periode_bulan"/>
+                            <!-- <field name="pembayaran_angsuran_ids"/>
+                            <field name="pelunasan_angsuran_ids"/>
+                            <field name="pencairan_pinjaman_ids"/>
+                            <field name="simpanan_wajib_ids"/>
+                            <field name="simpanan_sukarela_ids"/>
+                            <field name="simpanan_sukarela_05_ids"/>
+                            <field name="bunga_simpanan_ids"/>
+                            <field name="shu_transaksi_ids"/> -->
+                        </group>
+                        <notebook>
+                            <page string="Pembayaran Angsuran">
+                                <field name="pembayaran_angsuran_ids"/>
+                            </page>
+                            <page string="Pelunasan Angsuran">
+                                <field name="pelunasan_angsuran_ids"/>
+                            </page>
+                            <page string="Pencairan Pinjaman">
+                                <field name="pencairan_pinjaman_ids"/>
+                            </page>
+                            <page string="Simpanan Wajib">
+                                <field name="simpanan_wajib_ids"/>
+                            </page>
+                            <page string="Simpanan Sukarela">
+                                <field name="simpanan_sukarela_ids"/>
+                            </page>
+                            <page string="Simpanan Sukarela 05">
+                                <field name="simpanan_sukarela_05_ids"/>
+                            </page>
+                            <page string="Bunga Simpanan">
+                                <field name="bunga_simpanan_ids"/>
+                            </page>
+                            <page string="Shu Transaksi">
+                                <field name="shu_transaksi_ids"/>
+                            </page>
+                            
+                            
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="validasi_transaksi_tree" model="ir.ui.view">
+            <field name="name">Validasi Transaksi Tree</field>
+            <field name="model">validasi.transaksi</field>
+            <field name="arch" type="xml">
+                <tree string="Validasi Transaksi Tree">
+                    <field name="name"/>
+                        
+                                <!-- <field name="name"/> -->
+                            <field name="date"/>
+                            <field name="periode_bulan"/>
+                            <field name="pembayaran_angsuran_ids"/>
+                            <field name="pelunasan_angsuran_ids"/>
+                            <field name="pencairan_pinjaman_ids"/>
+                            <field name="simpanan_wajib_ids"/>
+                            <field name="simpanan_sukarela_ids"/>
+                            <field name="simpanan_sukarela_05_ids"/>
+                            <field name="bunga_simpanan_ids"/>
+                            <field name="shu_transaksi_ids"/>
+
+                                
+                </tree>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

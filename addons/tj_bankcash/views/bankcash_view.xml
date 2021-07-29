@@ -1,0 +1,72 @@
+<odoo>
+	<data>
+
+		<record id="action_bank_list" model="ir.actions.act_window">
+			<field name="name">Bank Statement</field>
+			<field name="res_model">account.bank.statement</field>
+			<field name="domain">[('journal_id.type', '=', 'bank')]</field>
+            <field name="context">{'journal_type':'bank'}</field>
+			<!-- <field name="view_mode">tree,form</field> -->
+		</record>
+
+		<record id="action_cash_list" model="ir.actions.act_window">
+			<field name="name">Cash Registers</field>
+			<field name="res_model">account.bank.statement</field>
+			<field name="domain">[('journal_id.type', '=', 'cash')]</field>
+            <field name="context">{'journal_type':'cash'}</field>
+			<!-- <field name="view_mode">tree,form</field> -->
+		</record>
+
+		<record id="action_cash_line_list" model="ir.actions.act_window">
+			<field name="name">Cash Line Registers</field>
+			<field name="res_model">account.bank.statement.line</field>
+			<!-- <field name="domain">[('stetement_id.journal_id.type', '=', 'cash')]</field>
+            <field name="context">{'journal_type':'cash'}</field> -->
+			<!-- <field name="view_mode">tree,form</field> -->
+		</record>
+
+		<record id="action_mutasi_cashbank" model="ir.actions.act_window">
+			<field name="name">Rekap Registers</field>
+			<field name="res_model">account.bank.statement.line</field>
+			<!-- <field name="domain">[('stetement_id.journal_id.type', '=', 'cash')]</field>
+            <field name="context">{'journal_type':'cash'}</field> -->
+			<!-- <field name="view_mode">tree,form</field> -->
+		</record>
+
+		<menuitem id="tj_bankcash_top"
+			 name="Bank and Cash"
+			 web_icon="tj_bankcash,static/description/icon.png"
+			 sequence="101"			 
+		/>
+		<menuitem id="tj_bankcash_top_menu"
+			 name="Bank and Cash"
+			 sequence="10"
+			 parent="tj_bankcash_top"/>
+
+			 <!-- parent="account.menu_finance" -->
+
+		<menuitem id="tj_bankcash_menu1"
+			 action="action_bank_list"
+			 name="Bank Statement"
+			 sequence="10"
+			 parent="tj_bankcash_top_menu"/>
+		<menuitem id="tj_bankcash_menu2"
+			 action="action_cash_list"
+			 name="Cash Registers"
+			 sequence="10"
+			 parent="tj_bankcash_top_menu"/>
+
+		<menuitem id="tj_bankcash_menu3"
+			 action="action_cash_line_list"
+			 name="Cash Line Registers"
+			 sequence="10"
+			 parent="tj_bankcash_top_menu"/>
+
+		<!-- <menuitem id="tj_bankcash_menu4"
+			 action="action_mutasi_cashbank"
+			 name="Mutasi Cash Bank"
+			 sequence="10"
+			 parent="tj_bankcash_top_menu"/>	  -->
+
+	</data>
+</odoo>

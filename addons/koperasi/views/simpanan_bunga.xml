@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data noupdate="1">
+        <!-- Add you code here -->
+
+        <!-- validasi.transaksi form view -->
+        <record id="simpanan_bunga_view_form" model="ir.ui.view">
+            <field name="name">simpanan.bunga.view.form</field>
+            <field name="model">simpanan.bunga</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <button name="action_get_trasaction" string="Get Trasanction" type="object" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                        <button name="action_validate" string="Validate" type="object" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                        <button name="action_posted" string="Posted" type="object" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'validate')]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <!-- <div class="oe_button_box" name="button_box">
+                            <button name="action_view_invoice" type="object" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('invoice_count', '=', 0)]}">
+                            <field name="invoice_count" widget="statinfo" string="Invoices"/>
+                            </button>
+                        </div> -->
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <!-- <field name="name"/> -->
+                            <field name="date" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                            <field name="account_move_id" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                            <field name="total_saldo_akhir"/>
+                            <field name="total_jumlah_bunga"/>
+                            <field name="month_years"/>
+                           
+                            
+                        </group>
+
+                        <notebook>
+                            <page string="Detail">
+                                <field name="bunga_detail_ids">
+                                    <tree>
+                                        <field name="simpanan_id"/>
+                                        <field name="status"/>
+                                        <field name="date"/>
+                                        <field name="partner_id"/>
+                                        <field name="master_simpanan_id"/>
+                                        <field name="bunga_persen"/>
+                                        <field name="saldo_akhir"/>
+                                        <field name="jumlah_bunga"/>
+                                        
+                                    </tree>
+                                </field>
+                            </page>
+                                <!--  <page string="Invoice">
+                                    <field name="invoice_ids"/>
+                                </page> -->
+                            <page string="Note">
+                                <field name="note_field"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="simpanan_bunga_tree" model="ir.ui.view">
+            <field name="name">Simpanan Bunga Tree</field>
+            <field name="model">simpanan.bunga</field>
+            <field name="arch" type="xml">
+                <tree string="Simpanan Bunga Tree">
+                    <!-- <field name="name"/> -->
+                        
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="account_move_id"/>
+                    <field name="total_saldo_akhir"/>
+                    <field name="total_jumlah_bunga"/>
+                    <field name="note_field"/>
+                    <field name="bunga_detail_ids"/>                             
+                </tree>
+            </field>
+        </record>
+
+
+
+
+
+        <record id="simpanan_bunga_detail_view_form" model="ir.ui.view">
+            <field name="name">simpanan.bunga.detail.view.form</field>
+            <field name="model">simpanan.bunga.detail</field>
+            <field name="arch" type="xml">
+                <form string="">
+                <header>
+                    <!-- <button name="action_get_trasaction" string="Get Trasanction" type="object" class="oe_highlight"/>
+                    <field name="state" widget="statusbar"/> -->
+                </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                                        <field name="status"/>
+                                        <field name="date"/>
+                                        <field name="partner_id"/>
+                                        <field name="master_simpanan_id"/>
+                                        <field name="bunga_persen"/>
+                                        <field name="saldo_akhir"/>
+                                        <field name="jumlah_bunga"/>
+                            
+                        </group>
+
+                        <!-- <notebook>
+                            <page string="Detail">
+                                <field name="pelunasan_detail_ids">                         
+                                </field>
+                            </page>
+                               
+                            <page string="Note">
+                                <field name="note_field"/>
+                            </page>
+                        </notebook> -->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="simpanan_bunga_detail_view_tree" model="ir.ui.view">
+            <field name="name">Simpanan Bunga Detail Tree</field>
+            <field name="model">simpanan.bunga.detail</field>
+            <field name="arch" type="xml">
+                <tree string="Simpanan Bunga Detail Tree">
+                    <field name="simpanan_id"/>
+                                        <field name="status"/>
+                                        <field name="date"/>
+                                        <field name="partner_id"/>
+                                        <field name="master_simpanan_id"/>
+                                        <field name="bunga_persen"/>
+                                        <field name="saldo_akhir"/>
+                                        <field name="jumlah_bunga"/>
+                            
+                </tree>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

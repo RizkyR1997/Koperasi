@@ -1,0 +1,70 @@
+<odoo>
+    <data>
+
+        <record id="action_expenses" model="ir.actions.act_window">
+            <field name="name">Biaya Operasional</field>
+            <field name="res_model">account.expenses</field>
+            <!-- <field name="view_type">form</field> -->
+            <!-- <field name="view_mode">tree,kanban,form,pivot,graph,activity</field> -->
+            <!-- <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('tj_bankcash.view_expenses_tree_custom1')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('tj_bankcash.view_expenses_form_custom1')})]"/> -->
+            <field name="domain">[]</field>
+<!--            <field name="context">{'default_date': current_date, 'default_date_back':-->
+<!--                current_date}-->
+<!--            </field>-->
+            <field name="help" type="html">
+                <tree>
+                    <p class="o_view_nocontent_smiling_face">
+                        Biaya Operasional
+                    </p>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_expenses_line" model="ir.actions.act_window">
+            <field name="name">Biaya Operasional Line</field>
+            <field name="res_model">account.expenses.line</field>
+            <!-- <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form,pivot,graph,activity</field> -->
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('tj_bankcash.view_expenses_line_tree_custom1')})]"/>
+            <field name="domain">[]</field>
+            <field name="context">{'create': False, 'edit': False, 'delete': False}</field>
+            <field name="help" type="html">
+                <tree>
+                    <p class="o_view_nocontent_smiling_face">
+                        Biaya Operasional Lines
+                    </p>
+                </tree>
+            </field>
+        </record>
+
+        <menuitem id="menu_action_expenses_tj_bankcash_root" name="Expenses" parent="tj_bankcash_top"
+                  sequence="102"/>
+        <menuitem action="action_expenses" id="menu_action_expenses_tj_bankcash1"
+                  name="Biaya Operasional" parent="menu_action_expenses_tj_bankcash_root" sequence="1"/>
+        <menuitem action="action_expenses_line" id="menu_action_expenses_tj_bankcash2"
+                  name="Biaya Operasional Line" parent="menu_action_expenses_tj_bankcash_root" sequence="2"/>
+<!--        <menuitem action="action_expenses_report_all" id="menu_action_expenses_tj_bankcash3"-->
+<!--                  name="Biaya Operasional Report" parent="menu_action_expenses_tj_bankcash_root" sequence="3"/>-->
+
+<!--        <menuitem id="menu_action_expenses_sale_root" name="Expenses" parent="sale.sale_menu_root"-->
+<!--                  sequence="5"/>-->
+<!--        <menuitem action="action_expenses" id="menu_action_expenses_sale1"-->
+<!--                  name="Biaya Operasional" parent="menu_action_expenses_sale_root" sequence="1"/>-->
+<!--        <menuitem action="action_expenses_line" id="menu_action_expenses2"-->
+<!--                  name="Biaya Operasional Line" parent="menu_action_expenses_sale_root" sequence="2"/>-->
+<!--        <menuitem action="action_expenses_report_all" id="menu_action_expenses3"-->
+<!--                  name="Biaya Operasional Report" parent="menu_action_expenses_sale_root" sequence="3"/>-->
+
+<!--        <menuitem id="menu_action_expenses_account_root" name="Expenses" parent="account.menu_finance"-->
+<!--                  sequence="2"/>-->
+<!--        <menuitem action="action_expenses" id="menu_action_expenses_accounting1"-->
+<!--                  name="Biaya Operasional" parent="menu_action_expenses_account_root" sequence="1"/>-->
+<!--        <menuitem action="action_expenses_line" id="menu_action_expenses_accounting2"-->
+<!--                  name="Biaya Operasional Line" parent="menu_action_expenses_account_root" sequence="2"/>-->
+<!--        <menuitem action="action_expenses_report_all" id="menu_action_accounting3"-->
+<!--                  name="Biaya Operasional Report" parent="menu_action_expenses_account_root" sequence="3"/>-->
+    </data>
+</odoo>

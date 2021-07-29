@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_simpanan_bunga">
+        <t t-call="web.html_container">
+            <t t-call="koperasi.template_print">
+                <div class="page" style="font-size:15px">
+                    <t t-foreach="docs" t-as="o">
+
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <div>
+                                <h3>No Simpanan Bunga : <span t-field="o.name"/></h3>
+                            </div>
+                        </div>
+                        <table width="100%">
+                            <tr>
+                                <td width="20%">
+                                    <strong>Tanggal</strong><br/>
+                                </td>
+                                <td width="40%">
+                                    <strong>: <span t-field="o.date"/></strong><br/>
+                                </td>
+                                <td width="20%">
+                                    <strong>Total Saldo Akhir</strong><br/>
+                                    <strong>Total Bunga Simpanan</strong><br/>
+                                </td>
+                                <td class="text-right" width="20%">
+                                    <strong>: <span t-esc="'{0:,.2f}'.format(float(o.total_saldo_akhir))" /></strong><br/>
+                                    <strong>: <span t-esc="'{0:,.2f}'.format(float(o.total_jumlah_bunga))" /></strong><br/>
+                                </td>
+                            </tr>
+                        </table>
+                        <div t-if="o.bunga_detail_ids">
+                            <h4>Details</h4>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td class="text-center"><strong>Simpanan</strong></td>
+                                    <td class="text-center"><strong>Tanggal</strong></td>
+                                    <td class="text-center"><strong>Anggota</strong></td>
+                                    <td class="text-center"><strong>Master Simpanan</strong></td>
+                                    <td class="text-center"><strong>Bunga (%)</strong></td>
+                                    <td class="text-center"><strong>Saldo Akhir</strong></td>
+                                    <td class="text-center"><strong>Bunga Simpanan</strong></td>
+                                </tr>
+                                <tr t-foreach="o.bunga_detail_ids" t-as="line">
+                                    <td class="text-center"><span t-field="line.simpanan_id"/></td>
+                                    <td class="text-center"><span t-field="line.date"/></td>
+                                    <td class="text-center"><span t-field="line.partner_id"/></td>
+                                    <td class="text-center"><span t-field="line.master_simpanan_id"/></td>
+                                    <td class="text-center"><span t-field="line.bunga_persen"/></td>
+
+                                    <td class="text-center"><span t-esc="'{0:,.2f}'.format(float(line.saldo_akhir))" /></td>
+                                    <td class="text-center"><span t-esc="'{0:,.2f}'.format(float(line.jumlah_bunga))" /></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <data>
+        <report string="Simpanan Bunga" id="action_report_simpanan_bunga" model="simpanan.bunga"
+            name="koperasi.report_simpanan_bunga" file="koperasi.report.report_simpanan_bunga" report_type="qweb-pdf" />
+    </data>
+</odoo>

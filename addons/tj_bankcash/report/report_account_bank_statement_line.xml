@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <report
+            id="action_report_account_bank_statement_line_menu"
+            model="account.bank.statement.line"
+            string="Print Document Line"
+            report_type="qweb-pdf"
+            name="tj_bankcash.report_account_bank_statement_line_menu"
+            file="tj_bankcash.report_account_bank_statement_line_menu"
+        />
+
+    <template id="report_account_bank_statement_line_menu">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="l">
+            <t t-call="report.external_layout">
+                <div class="page">
+                    <table class="table table-condensed">
+                    <thead>
+                        <font face="Tahoma" size="19">
+                        <tr>
+                            <td style="no border; text-align: center;" class="col-xs-12">
+                                <span style="font:20px lucida-console,sans-serif !important;"><b>BUKTI PENGELUARAN KAS / BANK</b></span>
+                            </td>
+                        </tr>
+                        </font>
+                    </thead>
+                    </table>                
+                    <div class="oe_structure"/>
+                        <td>
+                            <strong>Partner</strong><span t-field="l.partner_id"/><br/>
+                            <strong>Reference</strong><span t-field="l.ref"/><br/>
+                            <strong>Note </strong><span t-field="l.note"/>
+                        </td>
+                                <div class="col-xs-20" style="padding:0;">
+                                    <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th><strong>Statement</strong></th>
+                                            <th><strong>Date</strong></th>
+                                            <th><strong>Label </strong></th>
+                                            <th><strong>Amount</strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <span t-field="l.statement_id"/>
+                                            </td>
+                                            <td name="l.date">
+                                                <span t-field="l.date"/>
+                                            </td>
+                                            <td t-if="l.name">
+                                                <span t-field="l.name"/>
+                                            </td>
+                                            <td name="l.amount">
+                                                <span t-field="l.amount"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                                </div>
+                    <div class="oe_structure"/>
+                                    
+                                </div>
+                                
+        </t>
+        </t>
+    </t>    
+    </template>
+</odoo>

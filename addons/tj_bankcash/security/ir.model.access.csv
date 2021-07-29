@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+kasbank_admin, Model kasbank admin access,model_account_journal,tj_bankcash.group_makloon_manager,1,1,1,1
+kasbank_user, Model kasbank user access,model_account_journal,tj_bankcash.group_makloon_user,1,1,1,0
+trial_balance_new_admin,Model Trial Balance New admin access,model_trial_balance_new,account.group_account_user,1,1,1,1

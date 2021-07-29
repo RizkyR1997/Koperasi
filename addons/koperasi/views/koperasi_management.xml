@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <data>
+
+
+
+                <record id="action_digital_information_board" model="ir.actions.act_window">
+                        <field name="name">Digital Information Board</field>
+                        <field name="res_model">digital.information.board</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <!-- <field name="domain">[('is_bengkel_rekanan','=',True)]</field>
+                <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Scan kartu anggota untuk melihat dashboard data koperasi anda.
+                                </p>
+                        </field>
+                </record>
+
+                <record id="action_data_anggota" model="ir.actions.act_window">
+                        <field name="name">Anggota</field>
+                        <field name="res_model">res.partner</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <field name="domain">[('is_anggota','=',True)]</field>
+                        <field name="context">{'default_is_anggota' : True}</field>
+                        <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]" />
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data anggota.
+                                </p>
+                        </field>
+                </record>
+
+
+                <record id="action_data_coa" model="ir.actions.act_window">
+                        <field name="name">Akun / COA</field>
+                        <field name="res_model">account.account</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <!-- <field name="domain">[('is_bengkel_rekanan','=',True)]</field>
+                <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data akun.
+                                </p>
+                        </field>
+                </record>
+
+
+                <record id="action_data_produk_simpanan" model="ir.actions.act_window">
+                        <field name="name">Product Simpanan</field>
+                        <field name="res_model">product.product</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <field name="domain">[('is_simpanan','=',True)]</field>
+                        <field name="context">{'default_is_simpanan' : True}</field>
+                        <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('product.product_product_tree_view')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('product.product_normal_form_view')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('product.product_kanban_view')})]" />
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data simpanan.
+                                </p>
+                        </field>
+                </record>
+
+
+                <record id="action_data_produk_pinjaman" model="ir.actions.act_window">
+                        <field name="name">Product Pinjaman</field>
+                        <field name="res_model">product.product</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <field name="domain">[('is_pinjaman','=',True)]</field>
+                        <field name="context">{'default_is_pinjaman' : True}</field>
+                        <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('product.product_product_tree_view')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('product.product_normal_form_view')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('product.product_kanban_view')})]" />
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data pinjaman.
+                                </p>
+                        </field>
+                </record>
+
+
+                <record id="action_data_produk_lain2" model="ir.actions.act_window">
+                        <field name="name">Product Lain Lain</field>
+                        <field name="res_model">product.product</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <field name="domain">[('is_lain2','=',True)]</field>
+                        <field name="context">{'default_is_lain2' : True}</field>
+                        <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('product.product_product_tree_view')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('product.product_normal_form_view')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('product.product_kanban_view')})]" />
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data lain2.
+                                </p>
+                        </field>
+                </record>
+
+
+                <record id="action_transaksi_simpanan_reguler" model="ir.actions.act_window">
+                        <field name="name">Simpanan Reguler</field>
+                        <field name="res_model">simpanan</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <field name="domain">[('master_simpanan_id.id','=',1)]</field>
+                        <!-- <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data simpanan reguler.
+                                </p>
+                        </field>
+                </record>
+
+                <record id="action_transaksi_simpanan_berjangka" model="ir.actions.act_window">
+                        <field name="name">Simpanan Berjangka</field>
+                        <field name="res_model">simpanan</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <field name="domain">[('master_simpanan_id.id','=',2)]</field>
+                        <!-- <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data simpanan berjangka.
+                                </p>
+                        </field>
+                </record>
+
+
+                <record id="action_transaksi_pengambilan_simpanan" model="ir.actions.act_window">
+                        <field name="name">Pengambilan Simpanan</field>
+                        <field name="res_model">simpanan.details</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <!-- <field name="domain">[('is_bengkel_rekanan','=',True)]</field>
+                <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data pengabilan simpanan.
+                                </p>
+                        </field>
+                </record>
+
+
+                <record id="action_transaksi_pendaftaran_pinjaman" model="ir.actions.act_window">
+                        <field name="name">Pendaftaran Pinjaman</field>
+                        <field name="res_model">pinjaman</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <!-- <field name="domain">[('is_bengkel_rekanan','=',True)]</field>
+                <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                </record>
+
+                <record id="action_transaksi_pencairan_pinjaman" model="ir.actions.act_window">
+                        <field name="name">Pencairan Pinjaman</field>
+                        <field name="res_model">pinjaman</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <field name="domain">[('state','=','approved')]</field>
+                        <!-- <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                </record>
+
+
+                <record id="action_transaksi_pembayaran_pinjaman" model="ir.actions.act_window">
+                        <field name="name">Pembayaran Angsuran Pinjaman</field>
+                        <field name="res_model">pinjaman.details</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <!-- <field name="domain">[('is_bengkel_rekanan','=',True)]</field>
+                <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data pembayaran angsuran pinjaman.
+                                </p>
+                        </field>
+                </record>
+
+                <record id="action_transaksi_pelunasan_pinjaman" model="ir.actions.act_window">
+                        <field name="name">Pelunasan Pinjaman</field>
+                        <field name="res_model">pinjaman.pelunasan</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <!-- <field name="domain">[('is_bengkel_rekanan','=',True)]</field>
+                <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data pelunasan pinjaman.
+                                </p>
+                        </field>
+                </record>
+
+                <record id="action_transaksi_shu" model="ir.actions.act_window">
+                        <field name="name">Pembagian SHU</field>
+                        <field name="res_model">shu.transaksi</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <!-- <field name="domain">[('is_bengkel_rekanan','=',True)]</field>
+                <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data Pembagian SHU.
+                                </p>
+                        </field>
+                </record>
+
+
+                <record id="action_validasi_transaksi" model="ir.actions.act_window">
+                        <field name="name">Validasi All Transaksi</field>
+                        <field name="res_model">validasi.transaksi</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <!-- <field name="domain">[('is_bengkel_rekanan','=',True)]</field>
+                <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data validasi semua transaksi.
+                                </p>
+                        </field>
+                </record>
+
+
+
+                <record id="action_laporan_peminjaman" model="ir.actions.act_window">
+                        <field name="name">Laporan Pinjaman</field>
+                        <field name="res_model">pinjaman</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <!-- <field name="domain">[('is_bengkel_rekanan','=',True)]</field>
+                <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data laporan peminjaman.
+                                </p>
+                        </field>
+                </record>
+
+
+                <record id="action_laporan_pembayaran" model="ir.actions.act_window">
+                        <field name="name">Pembayaran Pinjaman</field>
+                        <field name="res_model">pinjaman.details</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <!-- <field name="domain">[('is_bengkel_rekanan','=',True)]</field>
+                <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data laporan pembayaran.
+                                </p>
+                        </field>
+                </record>
+
+
+                <record id="action_laporan_saldo_rekening" model="ir.actions.act_window">
+                        <field name="name">Saldo Rekening Simpanan dan Pinjaman</field>
+                        <field name="res_model">res.partner</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <!-- <field name="domain">[('is_bengkel_rekanan','=',True)]</field>
+                <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data laporan saldo rekening.
+                                </p>
+                        </field>
+                </record>
+
+
+                <record id="action_laporan_tunggakan" model="ir.actions.act_window">
+                        <field name="name">Tunggakan pinjaman</field>
+                        <field name="res_model">pinjaman</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <!-- <field name="domain">[('is_bengkel_rekanan','=',True)]</field>
+                <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data laporan tunggakan.
+                                </p>
+                        </field>
+                </record>
+
+
+                <record id="action_laporan_shu" model="ir.actions.act_window">
+                        <field name="name">S H U</field>
+                        <field name="res_model">shu.transaksi</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <!-- <field name="domain">[('is_bengkel_rekanan','=',True)]</field>
+                <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data laporan SHU.
+                                </p>
+                        </field>
+                </record>
+
+
+                <record id="action_konfigurasi_simpanan" model="ir.actions.act_window">
+                        <field name="name">Simpanan</field>
+                        <field name="res_model">master.simpanan</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <!-- <field name="domain">[('is_bengkel_rekanan','=',True)]</field>
+                <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data konfigurasi simpanan.
+                                </p>
+                        </field>
+                </record>
+
+
+                <record id="action_konfigurasi_pinjaman" model="ir.actions.act_window">
+                        <field name="name">Pinjaman</field>
+                        <field name="res_model">master.pinjaman</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <!-- <field name="domain">[('is_bengkel_rekanan','=',True)]</field>
+                <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data konfigurasi pinjaman.
+                                </p>
+                        </field>
+                </record>
+
+
+                <record id="action_konfigurasi_shu" model="ir.actions.act_window">
+                        <field name="name">S H U</field>
+                        <field name="res_model">master.shu</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <!-- <field name="domain">[('is_bengkel_rekanan','=',True)]</field>
+                <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data konfigurasi shu.
+                                </p>
+                        </field>
+                </record>
+
+
+                <record id="action_konfigurasi_pelunasan" model="ir.actions.act_window">
+                        <field name="name">Pelunasan</field>
+                        <field name="res_model">master.pinjaman.pelunasan</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <!-- <field name="domain">[('is_bengkel_rekanan','=',True)]</field>
+                <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data konfigurasi pelunasan.
+                                </p>
+                        </field>
+                </record>
+
+                <record id="action_pinjaman_pelunasan" model="ir.actions.act_window">
+                        <field name="name">Pelunasan</field>
+                        <field name="res_model">pinjaman.pelunasan</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <!-- <field name="domain">[('is_bengkel_rekanan','=',True)]</field>
+                <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data pinjaman pelunasan.
+                                </p>
+                        </field>
+                </record>
+
+
+                <record id="action_simpanan_bunga" model="ir.actions.act_window">
+                        <field name="name">Bunga simpanan</field>
+                        <field name="res_model">simpanan.bunga</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <!-- <field name="domain">[('is_bengkel_rekanan','=',True)]</field>
+                <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data bunga simpanan.
+                                </p>
+                        </field>
+                </record>
+
+                <record id="action_pinjaman_tunggakan" model="ir.actions.act_window">
+                        <field name="name">Pinjaman Tunggakan</field>
+                        <field name="res_model">pinjaman.tunggakan</field>
+                        <field name="view_mode">tree,form,kanban</field>
+                        <!-- <field name="domain">[('is_bengkel_rekanan','=',True)]</field>
+                <field name="context">{'default_is_bengkel_rekanan' : True}</field>
+                <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_partner_tree')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_partner_form')}),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('base.res_partner_kanban_view')})]"/> -->
+                        <field name="help" type="html">
+                                <p class="oe_view_nocontent_create">
+                                        Click to start preparing a new data Pinjaman Tunggakan.
+                                </p>
+                        </field>
+                </record>
+
+
+
+                <menuitem id="koperasi_main_menu" name="Simpan Pinjam" web_icon="koperasi,static/description/icon.png"
+                        sequence="0" />
+
+                <menuitem id="koperasi_digital_information_board" name="Digital Information Dashboard" sequence="0"
+                        parent="koperasi_main_menu" action="action_digital_information_board" />
+
+                <menuitem id="koperasi_management_master" name="Data Master" sequence="1" parent="koperasi_main_menu" />
+
+
+                <menuitem id="koperasi_management_anggota" name="Data Anggota" parent="koperasi_management_master"
+                        action="action_data_anggota" />
+                <menuitem id="koperasi_management_akun" name="Data Akun (COA)" parent="koperasi_management_master"
+                        action="action_data_coa" />
+                <menuitem id="koperasi_management_produk_simpanan" name="Data Produk Simpanan"
+                        parent="koperasi_management_master" action="action_konfigurasi_simpanan" />
+                <menuitem id="koperasi_management_produk_pinjaman" name="Data Produk Pinjaman"
+                        parent="koperasi_management_master" action="action_konfigurasi_pinjaman" />
+                <!-- <menuitem
+                id="koperasi_management_produk_lain2"
+                name="Data Produk Lain Lain"
+                parent="koperasi_management_master"
+                action="action_data_produk_lain2"/> -->
+
+
+
+                <!-- <menuitem
+                id="koperasi_management_transaksi"
+                name="Transaksi"
+                parent="koperasi_main_menu"/> -->
+
+                <menuitem id="koperasi_management_simpanan" name="Simpanan" sequence="2" parent="koperasi_main_menu" />
+                <menuitem id="koperasi_management_simpanan_reguler" name="Simpanan Reguler"
+                        parent="koperasi_management_simpanan" action="action_transaksi_simpanan_reguler" />
+                <menuitem id="koperasi_management_simpanan_berjangka" name="Simpanan Berjangka"
+                        parent="koperasi_management_simpanan" action="action_transaksi_simpanan_berjangka" />
+                <menuitem id="koperasi_management_pengambilan_simpanan" name="Setoran dan Pengambilan Simpanan"
+                        parent="koperasi_management_simpanan" action="action_transaksi_pengambilan_simpanan" />
+
+
+
+
+                <menuitem id="koperasi_management_pinjaman" name="Pinjaman" sequence="3" parent="koperasi_main_menu" />
+                <menuitem id="koperasi_management_pendaftaran_pinjaman" name="Pendaftaran Pinjaman"
+                        parent="koperasi_management_pinjaman" action="action_transaksi_pendaftaran_pinjaman" />
+                <menuitem id="koperasi_management_pencairan_pinjaman" name="Pencairan Pinjaman"
+                        parent="koperasi_management_pinjaman" action="action_transaksi_pencairan_pinjaman" />
+                <menuitem id="koperasi_management_pembayaran_pinjaman" name="Pembayaran Angsuran Pinjaman"
+                        parent="koperasi_management_pinjaman" action="action_transaksi_pembayaran_pinjaman" />
+                <menuitem id="koperasi_management_pelunasan_pinjaman11" name="Pelunasan Pinjaman"
+                        parent="koperasi_management_pinjaman" action="action_pinjaman_pelunasan" />
+
+
+                <menuitem id="koperasi_management_shu" name="S H U" sequence="4" parent="koperasi_main_menu" />
+                <menuitem id="koperasi_management_transaksi_shu" name="Pembagian SHU" parent="koperasi_management_shu"
+                        action="action_transaksi_shu" />
+
+                <menuitem id="koperasi_management_validasi" name="Validasi" sequence="5" parent="koperasi_main_menu" />
+                <menuitem id="koperasi_management_validasi_transaksi" name="Validasi Transaksi"
+                        parent="koperasi_management_validasi" action="action_validasi_transaksi" />
+                <menuitem id="koperasi_management_simpanan_bunga" name="Bunga Simpanan"
+                        parent="koperasi_management_validasi" action="action_simpanan_bunga" />
+                <menuitem id="koperasi_management_tunggakan_pinjaman" name="Tunggakan Angsuran Pinjaman"
+                        parent="koperasi_management_validasi" action="action_pinjaman_tunggakan" />
+
+
+                <menuitem id="koperasi_management_laporan" name="Laporan" sequence="6" parent="koperasi_main_menu" />
+                <menuitem id="koperasi_management_laporan_peminjaman" name="Laporan Peminjaman"
+                        parent="koperasi_management_laporan" action="action_laporan_peminjaman" />
+                <menuitem id="koperasi_management_laporan_pembayaran" name="Laporan Pembayaran"
+                        parent="koperasi_management_laporan" action="action_laporan_pembayaran" />
+                <menuitem id="koperasi_management_laporan_saldo_rekening" name="Laporan Saldo Rekening"
+                        parent="koperasi_management_laporan" action="action_laporan_saldo_rekening" />
+                <menuitem id="koperasi_management_laporan_tunggakan" name="Laporan Tunggakan"
+                        parent="koperasi_management_laporan" action="action_pinjaman_tunggakan" />
+                <menuitem id="koperasi_management_laporan_shu" name="Laporan SHU" parent="koperasi_management_laporan"
+                        action="action_laporan_shu" />
+
+
+                <menuitem id="koperasi_management_konfigurasi" name="Konfigurasi" sequence="7"
+                        parent="koperasi_main_menu" />
+                <menuitem id="koperasi_management_konfigurasi_simpanan" name="Konfigurasi Simpanan"
+                        parent="koperasi_management_konfigurasi" action="action_konfigurasi_simpanan" />
+                <menuitem id="koperasi_management_konfigurasi_pinjaman" name="Konfigurasi Peminjaman"
+                        parent="koperasi_management_konfigurasi" action="action_konfigurasi_pinjaman" />
+                <menuitem id="koperasi_management_konfigurasi_shu" name="Konfigurasi SHU"
+                        parent="koperasi_management_konfigurasi" action="action_konfigurasi_shu" />
+                <menuitem id="koperasi_management_konfigurasi_pelunasan" name="Konfigurasi Pelunasan Angsuran"
+                        parent="koperasi_management_konfigurasi" action="action_konfigurasi_pelunasan" />
+
+
+
+        </data>
+
+</odoo>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    This template will be loaded from /static/src/js/hello_world.js
+-->
+<templates xml:space="preserve">
+
+    <!-- After Scan -->
+    <t t-name="JSAfterScan">
+        <div class="o_scan_js_kiosk_mode_container">
+            <!-- <h1 class="text-center">TES</h1> -->
+            <div class="text-center">
+                <!-- <h1 class="text-center">
+                    <b>Saldo Simpanan :</b>
+                    <t t-esc="widget.saldo_simpanan" />
+                    <b>Saldo Pinjaman :</b>
+                    <t t-esc="widget.saldo_pinjaman" />
+                </h1>
+                <h1 class="text-center">
+                    <b>Nomor Anggota :</b>
+                    <t t-esc="widget.nomor_anggota" />
+                </h1>
+                <h1 class="text-center">
+                    <b>Nama Anggota :</b>
+                    <t t-esc="widget.nama_anggota" />
+                </h1>
+                <h1 class="text-center">
+                    <b>Nomor NPK :</b>
+                    <t t-esc="widget.no_npk" />
+                </h1> -->
+                <div class="flex-container">
+                    <div>
+                        <b>Saldo Simpanan :</b>
+                        <t t-esc="widget.saldo_simpanan" />
+                    </div>
+                    <div>
+                        <b>Saldo Pinjaman :</b>
+                        <t t-esc="widget.saldo_pinjaman" />
+                    </div>
+                    <div>
+                        <b>Nomor Anggota :</b>
+                        <t t-esc="widget.nomor_anggota" />
+                    </div>
+                    <div>
+                        <b>Nama Anggota :</b>
+                        <t t-esc="widget.nama_anggota" />
+                    </div>
+                    <div>
+                        <b>Nomor NPK :</b>
+                        <t t-esc="widget.no_npk" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+
+    <!-- Home -->
+    <t t-name="ScanJSKioskMode">
+        <div class="o_scan_js_kiosk_mode_container">
+            <!-- <span class="o_scan_js_kiosk_backdrop" /> -->
+            <h2><small>Welcome to</small>
+                <t t-esc="widget.company_name" />
+            </h2>
+            <img t-attf-src="{{widget.company_image_url}}" alt="Company Logo" class="o_scan_js_kiosk_company_image" />
+        </div>
+    </t>
+</templates>

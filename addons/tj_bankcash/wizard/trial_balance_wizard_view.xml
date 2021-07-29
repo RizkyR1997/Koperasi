@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data noupdate="1">
+        <!-- trial.balance.new.wizard form view -->
+        <record id="trial_new_balance_wizard_view_form" model="ir.ui.view">
+            <field name="name">trial.balance.new.wizard.view.form</field>
+            <field name="model">trial.balance.new.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Trial Balance New Wizard">
+                    <sheet>
+                        <group>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="target_move" widget="radio"/>
+                        </group>
+                        <footer>
+                            <button name="action_open" string="Open" type="object" class="oe_highlight"/>
+                            <button name="action_print" string="Print" type="object" class="oe_highlight"/>
+                            <button string="Cancel" class="btn btn-default" special="cancel" />
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="trial_new_balance_wizard_action" model="ir.actions.act_window">
+            <field name="name">Trial Balance New Wizard</field>
+            <field name="res_model">trial.balance.new.wizard</field>
+            <field name="target">new</field>
+            <field name="view_mode">form</field>
+        </record>
+
+        <menuitem
+            id="trial_new_balance_wizard_menu"
+            name="Trial Balance New"
+            parent="accounting_pdf_reports.menu_account_report"
+            action="trial_new_balance_wizard_action"
+            sequence="6"
+        />
+        
+    </data>
+</odoo>

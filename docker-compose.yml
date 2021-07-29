@@ -26,6 +26,6 @@ services:
       - USER=odoo
       - PASSWORD=odoo
     volumes:
-      - ./addons/koperasi-odoo-14:/mnt/extra-addons
+      - ./addons:/mnt/extra-addons
       - ./etc:/etc/odoo
     restart: always             # run as a service

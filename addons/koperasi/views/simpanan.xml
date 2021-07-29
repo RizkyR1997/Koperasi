@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="view_simpanan_search" model="ir.ui.view">
+            <field name="name">simpanan.search</field>
+            <field name="model">simpanan</field>
+            <field name="arch" type="xml">
+                <search string="Simpanan">
+                    <field name="partner_id" />
+                </search>
+            </field>
+        </record>
+
+
+        <record id="simpanan_form" model="ir.ui.view">
+            <field name="name">Simpanan</field>
+            <field name="model">simpanan</field>
+            <field name="arch" type="xml">
+                <form string="Simpanan Form">
+                    <header>
+
+                        <button name="action_submit_confirmed" string="Confirm" type="object" class="oe_highlight"
+                            attrs="{'invisible':[('state', '!=', 'draft')]}" />
+
+                        <button name="action_submit_done" string="Done" type="object" class="oe_highlight"
+                            attrs="{'invisible':[('state', '!=', 'confirmed')]}" />
+
+                        <button name="action_submit_close" string="Closed" type="object" class="oe_highlight"
+                            attrs="{'invisible':[('state', '!=', 'done')]}" />
+
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_journal" type="object" class="oe_stat_button"
+                                icon="fa-pencil-square-o" attrs="{'invisible': [('journal_count', '=', 0)]}">
+                                <field name="journal_count" widget="statinfo" string="Journal" />
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1" />
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="date_start" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                <field name="master_simpanan_id" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                <field name="bunga_persen" />
+                                <field name="jangka_waktu_tarikan" />
+                                <field name="partner_id" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                <field name="no_anggota" />
+                            </group>
+                            <group>
+                                <field name="no_npk" />
+                                <field name="no_rekening" />
+                                <field name="nama_bank" />
+                                <field name="keterangan" />
+                            </group>
+
+
+                            <group>
+                                <field name="saldo_akhir" />
+                                <field name="hide_inv_button" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Detail">
+                                <field name="simpanan_detail_ids">
+                                    <tree>
+                                        <!-- <field name="simpanan_id"/> -->
+                                        <field name="name" />
+                                        <field name="date_plan" />
+                                        <field name="type_simpanan" />
+                                        <field name="amount" attrs="{'readonly':[('state', '!=', 'draft')]}" />
+                                        <field name="bunga_persen" />
+                                        <!-- <field name="policy_id"/> -->
+                                        <field name="state" />
+                                        <field name="note_field" />
+                                        <button name="action_journal_simpanan_detail" string="Post" type="object"
+                                            class="btn-success" attrs="{'invisible': [('state', '!=', 'draft')]}" />
+
+                                        <button name="action_batal_journal_simpanan_detail" string="Batal" type="object"
+                                            class="btn-danger" attrs="{'invisible':[('state', '!=', 'posted')]}" />
+                                        <field name="account_move_id" />
+                                    </tree>
+                                </field>>
+                            </page>
+                            <page string="Invoice">
+                                <field name="invoice_ids" />
+                            </page>
+                            <page string="Image">
+                                <field name="detail_image_ids" />
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="simpanan_tree" model="ir.ui.view">
+            <field name="name">simpanan</field>
+            <field name="model">simpanan</field>
+            <field name="arch" type="xml">
+                <tree string="simpanan Tree">
+                    <field name="name" />
+                    <field name="partner_id" />
+                    <field name="city" />
+                    <field name="salesperson_id" />
+                    <field name="state" />
+                    <field name="date_start" />
+                    <field name="master_simpanan_id" />
+                    <field name="bunga_persen" />
+                    <field name="jangka_waktu_tarikan" />
+                    <field name="no_anggota" />
+                    <field name="no_npk" />
+                    <field name="no_rekening" />
+                    <field name="nama_bank" />
+                    <field name="keterangan" />
+                    <field name="saldo_akhir" />
+                    <!-- <field name="hide_inv_button"/> -->
+                </tree>
+            </field>
+        </record>
+    </data>
+
+</odoo>

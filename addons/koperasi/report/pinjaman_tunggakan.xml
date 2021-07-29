@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_pinjaman_tunggakan">
+        <t t-call="web.html_container">
+            <t t-call="koperasi.template_print">
+                <div class="page" style="font-size:15px">
+                    <t t-foreach="docs" t-as="o">
+
+                        <div class="oe_structure" />
+                        <div class="row">
+                            <div>
+                                <h3>No Pinjaman Tunggakan : <span t-field="o.name" /></h3>
+                            </div>
+                        </div>
+                        <table width="100%">
+                            <tr>
+                                <td width="20%">
+                                    <strong>Tanggal</strong><br />
+                                    <strong>Jumlah Tunggakan</strong><br />
+                                </td>
+                                <td width="40%">
+                                    <strong>: <span t-field="o.date" /></strong><br />
+                                    <strong>: <span t-field="o.jumlah_tunggakan" /></strong><br />
+                                </td>
+                                <td width="20%">
+                                    <strong>Sisa Pokok</strong><br />
+                                    <strong>Sisa Jasa</strong><br />
+                                    <strong>Selisih Total</strong><br />
+                                </td>
+                                <td width="20%">
+                                <strong>: <span t-esc="'{0:,.2f}'.format(float(o.sisa_total_pokok))" /></strong><br/>
+                                <strong>: <span t-esc="'{0:,.2f}'.format(float(o.sisa_total_jasa))" /></strong><br/>
+                                <strong>: <span t-esc="'{0:,.2f}'.format(float(o.selisih_total))" /></strong><br/>
+                                </td>
+                            </tr>
+                        </table>
+                        <div t-if="o.tunggakan_detail_ids">
+                            <h4>Details</h4>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td class="text-center"><strong>Tanggal</strong></td>
+                                    <td class="text-center"><strong>Tanggal Angsuran</strong></td>
+                                    <td class="text-center"><strong>Tunggakan</strong></td>
+                                    <td class="text-center"><strong>Anggota</strong></td>
+                                    <td class="text-center"><strong>Angsuran Ke</strong></td>
+                                    <td class="text-center"><strong>Jumlah Pokok</strong></td>
+                                    <td class="text-center"><strong>Jumlah Jasa</strong></td>
+                                    <td class="text-center"><strong>Jumlah Angsuran</strong></td>
+                                    <td class="text-center"><strong>Actual Angsuran</strong></td>
+                                </tr>
+                                <tr t-foreach="o.tunggakan_detail_ids" t-as="line">
+                                    <td class="text-center"><span t-field="line.date" /></td>
+                                    <td class="text-center"><span t-field="line.tgl_angsuran" /></td>
+                                    <td class="text-center"><span t-field="line.tunggakan_id" /></td>
+                                    <td class="text-center"><span t-field="line.partner_id" /></td>
+                                    <td class="text-center"><span t-field="line.angsuran_ke" /></td>
+
+                                    <td class="text-center"><span t-esc="'{0:,.2f}'.format(float(line.jumlah_pokok))" /></td>
+                                    <td class="text-center"><span t-esc="'{0:,.2f}'.format(float(line.jumlah_jasa))" /></td>
+                                    <td class="text-center"><span t-esc="'{0:,.2f}'.format(float(line.jumlah_angsuran))" /></td>
+                                    <td class="text-center"><span t-esc="'{0:,.2f}'.format(float(line.actual_angsuran))" /></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <data>
+        <report string="Pinjaman Tunggakan" id="action_report_pinjaman_tunggakan" model="pinjaman.tunggakan"
+            name="koperasi.report_pinjaman_tunggakan" file="koperasi.report.report_pinjaman_tunggakan"
+            report_type="qweb-pdf" />
+    </data>
+</odoo>

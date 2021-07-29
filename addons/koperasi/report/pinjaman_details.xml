@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_pinjaman_details">
+        <t t-call="web.html_container">
+            <t t-call="koperasi.template_print">
+                <div class="page" style="font-size:15px">
+                    <t t-foreach="docs" t-as="o">
+
+                        <div class="oe_structure" />
+                        <div class="row">
+                            <div>
+                                <h5>
+                                    <center>Bukti Pembayaran</center>
+                                </h5>
+                            </div>
+                        </div>
+                        <table width="100%">
+                            <tr>
+                                <td width="20%">
+                                    <strong>Nomor Pembayaran</strong><br />
+                                    <strong>Nomor Pinjaman</strong><br />
+                                    <strong>Customer</strong><br />
+                                    <strong>Master Pinjaman</strong><br />
+                                </td>
+                                <td width="40%">
+                                    <strong>: <span t-field="o.name" /></strong><br />
+                                    <strong>: <span t-field="o.pinjaman_id" /></strong><br />
+                                    <strong>: <span t-field="o.partner_id" /></strong><br />
+                                    <strong>: <span t-field="o.policy_id" /></strong><br />
+                                </td>
+                                <td width="20%">
+                                    <strong>Tanggal</strong><br />
+                                    <strong>Cara Pembayaran</strong><br />
+                                    <strong>Jumlah Pinjaman</strong><br />
+                                </td>
+                                <td width="20%">
+                                    <strong>: <span t-field="o.tgl_angsuran" /></strong><br />
+                                    <strong>: <span t-field="o.type_pelunasan" /></strong><br />
+                                    <strong>: <span t-esc="'{0:,.2f}'.format(float(o.pinjaman_id.jumlah_pinjaman))" /></strong><br />
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table table-condensed" style="margin-top : 20px">
+                            <thead>
+                                <tr class="text-center">
+                                    <th style="border : 1px solid black">Angsuran Ke</th>
+                                    <th style="border : 1px solid black">Angsuran Pokok</th>
+                                    <th style="border : 1px solid black">Angsuran Jasa</th>
+                                    <th style="border : 1px solid black">Rencana Angsuran</th>
+                                    <th style="border : 1px solid black">Actual Angsuran</th>
+                                    <th style="border : 1px solid black">Saldo Pinjaman</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center" style="border : 1px solid black">
+                                        <span t-field="o.angsuran_ke"/>
+                                    </td>
+                                    <td class="text-right" style="border : 1px solid black">
+                                        <span t-esc="'{0:,.2f}'.format(float(o.jumlah_pokok_perbulan))" />
+                                    </td>
+                                    <td class="text-right" style="border : 1px solid black">
+                                        <span t-esc="'{0:,.2f}'.format(float(o.jumlah_jasa_perbulan))" />
+                                    </td>
+                                    <td class="text-right" style="border : 1px solid black">
+                                        <span t-esc="'{0:,.2f}'.format(float(o.rencana_angsuran))" />
+                                    </td>
+                                    <td class="text-right" style="border : 1px solid black">
+                                        <span t-esc="'{0:,.2f}'.format(float(o.actual_angsuran))" />
+                                    </td>
+                                    <td class="text-right" style="border : 1px solid black">
+                                        <span t-esc="'{0:,.2f}'.format(float(o.saldo_pinjaman))" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <data>
+        <record model="report.paperformat" id="bukti_pembayaran_a4">
+            <field name="name">print.bukti.pembayaran.a4</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_width">210</field>
+            <field name="page_height">297</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">38</field>
+            <field name="margin_bottom">45</field>
+            <field name="margin_right">5</field>
+            <field name="margin_left">5</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report string="Pinjaman Detail" id="action_report_pinjaman_details" model="pinjaman.details"
+            paperformat="koperasi.bukti_pembayaran_a4" name="koperasi.report_pinjaman_details"
+            file="koperasi.report.report_pinjaman_details" report_type="qweb-pdf" />
+
+
+    </data>
+</odoo>

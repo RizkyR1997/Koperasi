@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_simpanan_details">
+        <t t-call="web.html_container">
+            <t t-call="koperasi.template_print">
+                <div class="page" style="font-size:15px">
+                    <t t-foreach="docs" t-as="o">
+
+                        <div class="oe_structure" />
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3>No Simpanan Detail : <span t-field="o.name" /></h3>
+                            </div><br />
+                        </div>
+                        <table class="table table-condensed">
+                            <tr class="text-center">
+                                <td><strong>No Simpanan</strong></td>
+                                <td><strong>Customer</strong></td>
+                                <td><strong>Master Simpanan</strong></td>
+                                <td><strong>Date</strong></td>
+                                <td><strong>Amount</strong></td>
+                                <td><strong>Bunga %</strong></td>
+                            </tr>
+                            <tr class="text-center">
+                                <td><span t-field="o.simpanan_id"/></td>
+                                <td><span t-field="o.partner_id"/></td>
+                                <td><span t-field="o.policy_id"/></td>
+                                <td><span t-field="o.date_plan"/></td>
+                                <td><span t-esc="'{0:,.2f}'.format(float(o.amount))" /></td>
+                                <td><span t-field="o.bunga_persen"/></td>
+                            </tr>
+                        </table>
+
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <data>
+        <report string="Simpanan Detail" id="action_report_simpanan_details" model="simpanan.details"
+            name="koperasi.report_simpanan_details" file="koperasi.report.report_simpanan_details"
+            report_type="qweb-pdf" />
+    </data>
+</odoo>

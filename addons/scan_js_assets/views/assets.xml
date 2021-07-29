@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        By inheriting assets_backend Odoo knows we'll want to use this JS code in the backend from Odoo.
+        All asset inheritance should always be done on the 'web' module, which holds all assets.
+        See https://github.com/odoo/odoo/blob/03e7efc3b4592c5f063c665130011a91fcc4d683/addons/web/views/webclient_templates.xml#L174-L372 where all the default JS is loaded.
+    -->
+    <template id="assets_backend" name="scan_js assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <!-- Links to the path of the JS file in your own module. Include your module name! -->
+            <script type="text/javascript" src="/scan_js_assets/static/src/js/scan_js.js"></script>
+            <script type="text/javascript" src="/scan_js_assets/static/src/js/after_scan.js"></script>
+            <link rel="stylesheet" type="text/css" href="/scan_js_assets/static/src/css/scan_js.css"/>
+            <link rel="stylesheet" type="text/scss" href="/scan_js_assets/static/src/scss/scan_js.scss"/>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,22 @@
+<odoo>
+    <!--
+        This Action has a tag defined. The name of this tag is to link the XML to the JavaScript.
+        Have a look at static/src/js/hello_world.js where you'll see this action being registered:
+        core.action_registry.add('hello_world.action', OurAction);
+    -->
+    <record id="action_scan_js" model="ir.actions.client">
+        <field name="name">Scan Demo</field>
+        <field name="tag">scan_js_action</field>
+        <field name="target">fullscreen</field>
+    </record>
+    
+    <record id="after_scan_js" model="ir.actions.client">
+        <field name="name">Message</field>
+        <field name="tag">after_scan_action</field>
+        <!-- <field name="tag">scan_js_greeting_message</field> -->
+    </record>
+
+    <menuitem name="Menu Scan"
+              id="scan_js_menu_root"
+              action="action_scan_js"/>
+</odoo>

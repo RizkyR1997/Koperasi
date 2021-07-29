@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+	<data>
+	<!-- tj.kasbank.wizard -->
+    <record id="view_tj_kasbank_wizard" model="ir.ui.view">
+		<field name="name">TJ.Kas.Bank</field>
+		<field name="model">tj.kasbank.wizard</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			
+	        <form string="tj kas bank" version="7.0">
+	        	<group>
+	        		<group>
+	        			<label for="start_date" string="Periode"/>
+		   				<div>
+		   					<field name="start_date" class="oe_inline" placeholder="Start Date"/> s/d 
+							<field name="end_date" class="oe_inline" placeholder="End Date"/>
+		   					<field name="journal_id" domain="[('type','in',['cash','bank'])]"/>
+		   				</div>
+		   				
+	        		</group>
+	        		
+	        	</group>	        	
+	          	<footer>
+	                <button name="action_print" string="Print" type="object" class="oe_highlight" icon="fa-print"/>
+	                <!-- <label string="or"/> -->
+	                <button string="Cancel" class="oe_link" special="cancel" type="special"/>
+	            </footer>
+	        </form>
+	        
+    	</field>
+    </record>
+	
+    <record id="action_tj_kasbank_wizard" model="ir.actions.act_window">
+		<field name="name">Tj Kas Bank</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">tj.kasbank.wizard</field>
+		<!-- <field name="view_type">form</field> -->
+		<!-- <field name="view_mode">form</field> -->
+		<field name="view_id" ref="view_tj_kasbank_wizard"/>
+		<field name="target">new</field>
+    </record>
+	
+	<!--menuitem id="menu_ms_follow_up_ar" parent="stock.menu_warehouse_report" sequence="1010" action="action_ms_follow_up_ar_wizard"/-->
+
+	<menuitem id="tj_bankcash_menu4"
+			 action="action_tj_kasbank_wizard"
+			 name="Mutasi Cash Bank"
+			 sequence="10"
+			 parent="tj_bankcash_top_menu"/>	 
+	
+	</data>
+</odoo>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_master_pinjaman_pelunasan">
+        <t t-call="web.html_container">
+            <t t-call="koperasi.template_print">
+                <div class="page" style="font-size:15px">
+                    <t t-foreach="docs" t-as="o">
+
+                        <div class="oe_structure" />
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3>No master pinjaman pelunasan : <span t-field="o.name" /></h3>
+                            </div><br />
+                        </div>
+                        <table class="table table-condensed">
+                            <tr>
+                                <td class="col-xs-3"><strong>Tanggal</strong></td>
+                                <td class="col-xs-3"><strong>Anggota</strong></td>
+                                <td class="col-xs-3"><strong>Master pinjaman_details</strong></td>
+                                <td class="col-xs-3"><strong>Jumlah pinjaman_details</strong></td>
+                                <td class="col-xs-3"><strong>Persen Jasa</strong></td>
+                                <td class="col-xs-3"><strong>Jangka Waktu</strong></td>
+                            </tr>
+                            <tr>
+                                <!-- <td class="col-xs-3"><span t-field="o.date"/></td>
+                                <td class="col-xs-3"><span t-field="o.partner_id.name"/></td>
+                                <td class="col-xs-3">
+                                    <span t-field="o.master_pinjaman_details_id.name"/>
+                                    
+                                </td>
+                                <td class="col-xs-3">
+                                    <span t-field="o.jumlah_pinjaman_details"/>
+                                    
+                                </td>
+                                <td class="col-xs-3">
+                                    <span t-field="o.jasa_persen_bulan"/>
+                                    
+                                </td>
+                                <td class="col-xs-3">
+                                    <span t-field="o.jangka_waktu"/>
+                                
+                                </td> -->
+                            </tr>
+                        </table>
+                        <table class="table table-condensed">
+                            <tr>
+                                <!-- <td class="col-xs-3"><strong>Tanggal Mulai</strong></td>
+                                <td class="col-xs-3"><strong>Tanggal Selesai</strong></td>
+
+                                <td class="col-xs-3"><strong>Total Terima</strong></td>
+                                <td class="col-xs-3"><strong>S. Sukarela</strong></td>
+                                <td class="col-xs-3"><strong>J. Sosial</strong></td>
+                                <td class="col-xs-3"><strong>Biaya Adm</strong></td>
+
+
+                                <td class="col-xs-3"><strong>Jumlah Angsuran Perbulan</strong></td> -->
+
+                            </tr>
+                            <tr>
+                                <!-- <td class="col-xs-3"><span t-field="o.tgl_pencairan"/></td>
+                                <td class="col-xs-3"><span t-field="o.tgl_selesai"/></td>
+                                <td class="col-xs-3"><span t-field="o.jumlah_pokok"/></td>
+                                <td class="col-xs-3"><span t-field="o.s_sukarela_amount"/></td>
+                                <td class="col-xs-3"><span t-field="o.j_sosial_amount"/></td>
+                                <td class="col-xs-3"><span t-field="o.biaya_adm"/></td>
+                                <td class="col-xs-3"><span t-field="o.jumlah_angsuran"/></td> -->
+
+                            </tr>
+                        </table>
+                        <!-- <div t-if="o.pinjaman_details_detail_ids">
+                            <h4>Lots Consumption Details</h4>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td class="text-center"><strong>Angsuran Ke</strong></td>
+                                    <td class="text-center"><strong>Tanggal Angsuran</strong></td>
+                                    <td class="text-center"><strong>Jumlah Pokok</strong></td>
+                                    <td class="text-center"><strong>Jumlah Jasa</strong></td>
+                                    <td class="text-center"><strong>Saldo pinjaman_details</strong></td>
+                                </tr>
+                                <tr t-foreach="o.pinjaman_details_detail_ids" t-as="line">
+                                    <td class="text-center"><span t-field="line.angsuran_ke"/></td>
+                                    <td class="text-center"><span t-field="line.tgl_angsuran"/></td>
+                                    <td class="text-center"><span t-field="line.jumlah_pokok_perbulan"/></td>
+                                    <td class="text-center"><span t-field="line.jumlah_jasa_perbulan"/></td>
+                                    <td class="text-center"><span t-field="line.saldo_pinjaman_details"/></td>
+                                </tr>
+                            </table>
+                        </div> -->
+
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <data>
+        <report string="Master Pinjaman Pelunasan" id="action_report_master_pinjaman_pelunasan"
+            model="master.pinjaman.pelunasan" name="koperasi.report_master_pinjaman_pelunasan"
+            file="koperasi.report.report_master_pinjaman_pelunasan" report_type="qweb-pdf" />
+    </data>
+</odoo>

@@ -1,0 +1,37 @@
+.o_scan_js_kiosk_mode_container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    @include o-position-absolute(0, 0, 0, 0);
+
+    @include media-breakpoint-up(md) {
+        justify-content: center;
+    }
+}
+
+.o_scan_js_kiosk_backdrop {
+    @include o-position-absolute(0,0,0,0);
+    background-color: fade-out(black, 0.7);
+}
+
+img.o_scan_js_kiosk_company_image {
+    overflow:hidden; // prevent margins colapsing with h1
+    margin: 1rem 0 2rem;
+    width: 200px;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    background-color: DodgerBlue;
+}
+  
+.flex-container > div {
+    background-color: #f1f1f1;
+    // width: 100px;
+    margin: 10px;
+    text-align: left;
+    line-height: 75px;
+    font-size: 30px;
+}

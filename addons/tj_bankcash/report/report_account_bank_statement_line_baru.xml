@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="action_report_account_bank_statement_line_menu"
+            model="account.bank.statement.line"
+            string="account bank statement line"
+            report_type="qweb-pdf"
+            name="tj_bankcash.report_account_bank_statement_line_menu"
+            file="tj_bankcash.report_account_bank_statement_line_menu"/>
+
+        <template id="report_account_bank_statement_line_menu">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="tj_bankcash.report_account_bank_statement_line_document"/>
+                </t>
+            </t>
+        </template>
+
+        <template id="report_account_bank_statement_line_document">
+
+            
+            <t t-foreach="docs" t-as="o">
+            <div class="oe_structure"/>    
+                <!--<t t-call="report.external_layout">-->
+                <div class="page">
+                    <div class="row">
+                        <!--<div name="invoice_address" class="col-xs-5 col-xs-offset-1">-->
+                        <div style="height:15px"/>
+                        <div>
+                            <span><b>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;^^^ SURAT JALAN ^^^</b>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;No Order : <span t-field="o.name"/></span>
+                        </div>
+                        <div class="col-xs-12">
+                            <div style="border-bottom: 1px solid black;"/>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <div style="height:10px"/>
+                    </div>
+                    <div style="height:20px">
+                        Kepada Yth : <span t-field="o.partner_id.name"/>
+                    </div>
+                    
+                    <div style="height:20px"></div>
+
+                    <table class="table table-bordered" style="border-color:black;">
+                        <thead>
+                            <tr>
+                                <th style="border: 1px solid black">No</th>
+                                <!-- <th style="border: 1px solid black">Nama/Jenis Kain</th>
+                                <th style="border: 1px solid black" class="text-right">Warna Kain</th>
+                                <th style="border: 1px solid black" class="text-right">Kwantitas</th> -->
+                                <th style="border: 1px solid black" class="text-right">Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody class="quotation_tbody">
+                            <t t-set="no" t-value="0"/>
+                            <!-- <t t-set="tot_qty" t-value="0"/> -->
+                            <tr t-foreach="o.lines" t-as="l">
+                                <t t-set="no" t-value="no + 1"/>
+                                <!-- <t t-set="tot_qty" t-value="tot_qty + l.qty"/> -->
+                                <td style="border: 1px solid black"><span t-esc="no"/></td>
+                                <!--  <td style="border: 1px solid black"><span t-field="l.product_id"/></td>
+                                <td style="border: 1px solid black"><span t-field="l.warna"/></td>
+                                <td style="border: 1px solid black" class="text-right">
+                                    <span t-field="l.qty"/> -->
+                                    <!--span t-field="l.uom_id" groups="product.group_uom"/
+                                </td> -->
+                                <td style="border: 1px solid black" class="text-right">
+
+                                </td>
+                            </tr>
+                        </tbody>
+                        <thead>
+                            <tr>
+                                <td style="border: 1px solid black" t-att-colspan="3">Note:</td>
+                                <th style="border: 1px solid black" class="text-right"><span t-esc="no"/> / <!-- <span t-esc="tot_qty"></span> --></th>
+                                <th style="border: 1px solid black" class="text-right"></th>
+                            </tr>
+                        </thead>
+                    </table>
+                    
+                    <div class="col-xs-2 pull-center" style="font-size:12px;">
+                        <table>
+                            <tr>
+                                <td>
+                                    Diterima Oleh,
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <![CDATA[&nbsp;]]>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <![CDATA[&nbsp;]]>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <![CDATA[&nbsp;]]>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ......................
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-xs-2 pull-center" style="font-size:12px;">
+                        <table>
+                            <tr>
+                                <td>
+                                    Sopir,
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <![CDATA[&nbsp;]]>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <![CDATA[&nbsp;]]>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <![CDATA[&nbsp;]]>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ......................
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-xs-2 pull-center" style="font-size:12px;">
+                        <table>
+                            <tr>
+                                <td>
+                                    Diperiksa Oleh,
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <![CDATA[&nbsp;]]>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <![CDATA[&nbsp;]]>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <![CDATA[&nbsp;]]>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ......................
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-xs-2 pull-center" style="font-size:12px;">
+                        <table>
+                            <tr>
+                                <td>
+                                    Diketahui Oleh,
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <![CDATA[&nbsp;]]>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <![CDATA[&nbsp;]]>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <![CDATA[&nbsp;]]>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ......................
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-xs-3 pull-right" style="font-size:12px;">
+                        <table>
+                            <tr>
+                                <td>
+                                    Bandung, <span t-field="o.date_order"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <![CDATA[&nbsp;]]>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <![CDATA[&nbsp;]]>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <![CDATA[&nbsp;]]>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span t-esc="o.user_id.name"></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+
+                </div>
+                <!--</t>-->
+            </t>
+        
+        </template>
+    </data>
+</odoo>

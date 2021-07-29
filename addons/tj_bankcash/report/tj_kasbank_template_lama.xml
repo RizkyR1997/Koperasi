@@ -1,0 +1,169 @@
+<odoo>
+    <data>
+
+        <template id="tj_kasbank_document">
+            <t t-call="report.external_layout">
+                <t t-set="o" t-value="o.with_context({})"/>
+                <div class="page">
+                    <div class="oe_structure"/>
+
+                    <h2 style="text-align:center">Report Kas Bank</h2>
+                    <div style="padding-bottom:40px;"></div>
+                    <t t-if="o.start_date">
+                        <t t-set="start_date" t-value="o.start_date"/>
+                    </t>
+                    <t t-if="not o.start_date">
+                        <t t-set="start_date" t-value="'-'"/>
+                    </t>
+                    <t t-if="o.end_date">
+                        <t t-set="end_date" t-value="o.end_date"/>
+                    </t>
+                    <t t-if="not o.end_date">
+                        <t t-set="end_date" t-value="'-'"/>
+                    </t>
+                    <div style="padding-bottom:5px;">Periode : <span t-esc="start_date"/> s/d <span t-esc="end_date"/></div>
+                    <!--div style="padding-bottom:5px;" t-if="o.get_loc_name()">Lokasi : <span t-esc="o.get_loc_name()"/></div>
+                    <div style="padding-bottom:5px;" t-if="o.get_categ_names()">Kategori : <span t-esc="o.get_categ_names()"/></div>
+                    <div style="padding-bottom:5px;" t-if="o.get_product_names()">Produk : <span t-esc="o.get_product_names()"/></div>
+                    <t t-if="o.per_lot">
+                        <div style="padding-bottom:5px;" t-if="o.get_lot_names()">Lot/Serial Number : <span t-esc="o.get_lot_names()"/></div>
+                    </t-->
+
+                    <div style="padding-bottom:40px;"></div>
+
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th><strong>No</strong></th>
+                                <th><strong>Code</strong></th>
+                                <th><strong>---</strong></th>                                
+                                <th><strong>---</strong></th>
+                                <th><strong>---</strong></th>
+                                <th><strong>---</strong></th>
+                                <th><strong>---</strong></th>
+                                <th><strong>---</strong></th>
+                                <th><strong>---</strong></th>
+                                <th><strong>Saldo Awal</strong></th>
+                                <th><strong>Penerimaan</strong></th>
+                                <th><strong>Pengeluaran</strong></th>
+                                <th><strong>Saldo Akhir</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.get_results()" t-as="line">
+                                <td>
+                                    <span t-esc="line[0]"/>
+                                </td>
+                                <!-- <t t-set="akhir" t-value="line[1]+line[2]-line[3]"/>
+                                <t t-set="harga" t-value="o.get_harga(line[4])"/>
+                                <t t-set="jumlah" t-value="akhir*harga"/>
+
+                                <t t-set="number" t-value="number+1"/>
+                                <t t-set="tot_awal" t-value="tot_awal+line[1]"/>
+                                <t t-set="tot_masuk" t-value="tot_masuk+line[2]"/>
+                                <t t-set="tot_keluar" t-value="tot_keluar+line[3]"/>
+                                <t t-set="tot_akhir" t-value="tot_akhir+akhir"/>
+                                <t t-set="tot_jumlah" t-value="tot_jumlah+jumlah"/> -->
+                                <td>
+                                    <span t-esc="line[1]"/>
+                                </td>
+                                <td>
+                                    <span t-esc="line[2]"/>
+                                </td>
+                                <!-- <td>
+                                    <span t-esc="'{0:,.0f}'.format(line[3]).replace(',','.')"/>
+                                </td>
+                                <td>
+                                    <span t-esc="'{0:,.0f}'.format(line[4]).replace(',','.')"/>
+                                </td>
+                                <td>
+                                    <span t-esc="'{0:,.0f}'.format(line[5]).replace(',','.')"/>
+                                </td>
+                                <td>
+                                    <span t-esc="'{0:,.0f}'.format(line[6]).replace(',','.')"/>
+                                </td>
+                                <td>
+                                    <span t-esc="'{0:,.0f}'.format(line[7]).replace(',','.')"/>
+                                </td>
+                                <td>
+                                    <span t-esc="'{0:,.0f}'.format(line[8]).replace(',','.')"/>
+                                </td>
+                                <td>
+                                    <span t-esc="'{0:,.0f}'.format(line[9]).replace(',','.')"/>
+                                </td>
+                                <td>
+                                    <span t-esc="'{0:,.0f}'.format(line[10]).replace(',','.')"/>
+                                </td>
+                                <td>
+                                    <span t-esc="'{0:,.0f}'.format(line[11]).replace(',','.')"/>
+                                </td>
+                                <td>
+                                    <span t-esc="'{0:,.0f}'.format(line[12]).replace(',','.')"/>
+                                </td> -->
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    
+                                </td>
+                                <td>
+                                    <strong>Total</strong>
+                                </td>
+                                <td>
+                                    
+                                </td>
+                                <td>
+                                        
+                                </td>
+                                <!--td>
+                                    <strong><span t-esc="'{0:,.0f}'.format(tot_awal).replace(',','.')"/></strong>
+                                </td>
+                                <td>
+                                    <strong><span t-esc="'{0:,.0f}'.format(tot_masuk).replace(',','.')"/></strong>
+                                </td>
+                                <td>
+                                    <strong><span t-esc="'{0:,.0f}'.format(tot_keluar).replace(',','.')"/></strong>
+                                </td>
+                                <td>
+                                    <strong><span t-esc="'{0:,.0f}'.format(tot_akhir).replace(',','.')"/></strong>
+                                </td>
+                                <td>
+                                        
+                                </td>
+                                <td>
+                                    <strong>Total Rp</strong>
+                                </td>
+                                <td>
+                                    <strong><span t-esc="'{0:,.0f}'.format(tot_jumlah).replace(',','.')"/></strong>
+                                </td-->
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="padding-bottom:40px;" class="oe_structure"/>
+                    <div>Diprint oleh : <span t-field="user.name"/></div>
+                    
+                </div>
+            </t>
+        </template>
+
+        <template id="tj_kasbank_template">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="tj_kasbank.tj_kasbank_document"/>
+                </t>
+            </t>
+        </template>
+
+        <report 
+            string="Report Kas Bank" 
+            id="tj_action_kasbank" 
+            model="tj.kasbank.wizard" 
+            report_type="qweb-pdf"
+            name="tj_bankcash.tj_kasbank_template" 
+            file="tj_bankcash.tj_kasbank_template" 
+        />
+
+    </data>
+</odoo>

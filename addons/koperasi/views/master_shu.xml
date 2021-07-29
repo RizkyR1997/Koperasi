@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <record id="master_shu_form" model="ir.ui.view">
+            <field name="name">Master SHU</field>
+            <field name="model">master.shu</field>
+            <field name="arch" type="xml">
+                <form string="SHU Form">
+                    <header>
+                        <!-- <button name="create_invoice" string="Create Invoice" type="object" class="oe_highlight"
+                                attrs="{'invisible': [('invoice_id', '!=', False)]}"/> -->
+                   </header>
+                    <sheet>
+                        <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="ad_art"/>
+                                <field name="date_start"/>
+                                <field name="end_date"/>
+                                
+                            </group>
+                            <group>
+                                <field name="persen_shu_modal"/>
+                                <field name="persen_shu_simpanan"/>
+                                <field name="persen_shu_pinjaman"/>
+                                <field name="persen_shu_cadangan"/>
+                                <field name="persen_shu_pengurus"/>
+                                <field name="persen_shu"/>
+                            </group>
+                            <group>
+                                <field name="account_id"/>
+                                <field name="journal_id"/>
+                                <field name="account_id_in"/>
+                                <field name="account_id_out"/>
+                                
+
+                            </group>
+                            <group>
+                                <field name="clossing_profit_id"/>
+                                <field name="clossing_modal_id"/>
+                                <field name="clossing_simpanan_id"/>
+                                <field name="clossing_pinjaman_id"/>
+                                <field name="clossing_cadangan_id"/>
+                                <field name="clossing_pengurus_id"/>
+                                <field name="clossing_pembulatan_id"/>
+                                
+
+                            </group>
+                            <group>
+                                <field name="note_field"/>
+                                
+                                
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Detail">
+                                <field name="master_shu_detail_ids"/>
+                            </page>
+                            
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="master_shu_tree" model="ir.ui.view">
+            <field name="name">Master SHU</field>
+            <field name="model">master.shu</field>
+            <field name="arch" type="xml">
+                <tree string="Master SHU Tree">
+                    <field name="name"/>
+                        
+                                <field name="ad_art"/>
+                                <field name="date_start"/>
+                                <field name="end_date"/>
+                                <field name="persen_shu_modal"/>
+                                <field name="persen_shu_simpanan"/>
+                                <field name="persen_shu_pinjaman"/>
+                                <field name="persen_shu_cadangan"/>
+                                <field name="persen_shu_pengurus"/>
+                                <field name="persen_shu"/>
+                                <field name="account_id"/>
+                                <field name="journal_id"/>
+                                <field name="account_id_in"/>
+                                <field name="account_id_out"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+
+
+
+        <record id="master_shu_detail_form" model="ir.ui.view">
+            <field name="name">Master SHU Detail</field>
+            <field name="model">master.shu.detail</field>
+            <field name="arch" type="xml">
+                <form string="SHU Form">
+                    <header>
+                        <!-- <button name="create_invoice" string="Create Invoice" type="object" class="oe_highlight"
+                                attrs="{'invisible': [('invoice_id', '!=', False)]}"/> -->
+                   </header>
+                    <sheet>
+                        <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+
+                        </h1>
+                        </div>
+                        <group>
+                            <group>
+                                
+                                <field name="date"/>
+                                <field name="master_shu_id"/>
+                                
+                                
+                            </group>
+                            <group>
+                                <field name="shu_komponen_id"/>
+                                <field name="shu_persen"/>
+                                
+                            </group>
+
+
+                            <!-- <group>
+                                <field name="note_field"/>
+                                
+                                
+                            </group> -->
+                        </group>
+                        <!-- <notebook>
+                            <page string="Detail">
+                                <field name="master_shu_detail_ids"/>
+                            </page>
+                            
+                        </notebook> -->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="master_shu_detail_tree" model="ir.ui.view">
+            <field name="name">Master SHU Detail</field>
+            <field name="model">master.shu.detail</field>
+            <field name="arch" type="xml">
+                <tree string="Master SHU Detail Tree">
+                    <field name="name"/>
+                        
+                                <field name="date"/>
+                                
+                                <field name="master_shu_id"/>
+                                <field name="shu_komponen_id"/>
+                                <field name="shu_persen"/>
+                                
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="shu_transaksi_form" model="ir.ui.view">
+            <field name="name">Shu Transaksi</field>
+            <field name="model">shu.transaksi</field>
+            <field name="arch" type="xml">
+                <form string="SHU Transaksi Form">
+                    <header>
+                        <button name="action_get_transaksi_shu" string="Get Transaksi SHU" type="object" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                        <button name="action_validate" string="Validate" type="object" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                        <button name="action_posted" string="Posted" type="object" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'validate')]}"/>
+                        <button name="action_clossing_tahunan" string="Clossing Tahunan" type="object" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'posted')]}"/>
+                        <field name="state" widget="statusbar"/>
+                   </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_journal" type="object" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('journal_count', '=', 0)]}">
+                                <field name="journal_count" widget="statinfo" string="Journal"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+
+                        </h1>
+                        </div>
+                        <group>
+                            <group>
+                                
+                                <field name="date"/>
+                                <field name="shu_id"/>
+                                <field name="state"/>
+                                <field name="jum_anggota"/>
+                                <field name="date_start"/>
+                                <field name="end_date"/>
+                            </group>
+                            <group>
+                                <field name="persen_shu_modal"/>
+                                <field name="persen_shu_simpanan"/>
+                                <field name="persen_shu_pinjaman"/>
+                                <field name="persen_shu_cadangan"/>
+                                <field name="persen_shu_pengurus"/>
+                            </group>
+
+                            <group>
+                                <field name="amount_shu"/>
+                                <field name="amount_shu_simpanan"/>
+                                <field name="amount_shu_pinjaman"/>
+                                <field name="tot_shu_dibagikan"/>
+                                <field name="tot_pembulatan_shu"/>
+                            </group>
+
+                            <group>
+                                <field name="nilai_shu_modal"/>
+                                <field name="nilai_shu_simpanan"/>
+                                <field name="nilai_shu_pinjaman"/>
+                                <field name="nilai_shu_cadangan"/>
+                                <field name="nilai_shu_pengurus"/>
+                            </group>
+
+                            <group>
+                                <field name="account_move_id"/>                                
+                            </group>
+
+
+                            
+                            <!-- <group>
+                                
+                                
+                            </group> -->
+                        </group>
+                        <notebook>
+                            <page string="Detail">
+                                <field name="shu_transaksi_detail_ids"/>
+                            </page>
+                            
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="shu_transaksi_tree" model="ir.ui.view">
+            <field name="name">Shu Transaksi Tree</field>
+            <field name="model">shu.transaksi</field>
+            <field name="arch" type="xml">
+                <tree string="Shu Transaksi Tree">
+                    <field name="name"/>
+                        
+                                <field name="date"/>
+                                <field name="shu_id"/>
+                                <field name="persen_shu_modal"/>
+                                <field name="persen_shu_simpanan"/>
+                                <field name="persen_shu_pinjaman"/>
+                                <field name="persen_shu_cadangan"/>
+                                <field name="amount_shu"/>
+                                <field name="amount_shu_simpanan"/>
+                                <field name="amount_shu_pinjaman"/>
+                                <field name="tot_shu_dibagikan"/>
+                                <field name="tot_pembulatan_shu"/>
+                                <field name="state"/>
+
+                                
+                </tree>
+            </field>
+        </record>
+
+
+
+        <record id="shu_transaksi_line_form" model="ir.ui.view">
+            <field name="name">Shu Transaksi Line</field>
+            <field name="model">shu.transaksi.line</field>
+            <field name="arch" type="xml">
+                <form string="SHU Transaksi Line Form">
+                    <header>
+                        <!-- <button name="create_invoice" string="Create Invoice" type="object" class="oe_highlight"
+                                attrs="{'invisible': [('invoice_id', '!=', False)]}"/> -->
+                   </header>
+                    <sheet>
+                        <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                            <field name="state"/>
+                        </h1>
+                        </div>
+                        <group>
+                            <group>
+                                
+                                <field name="date"/>
+                                <field name="shu_transaksi_id"/>
+                                
+                                
+                            </group>
+                            <group>
+                                <field name="partner_id"/>
+                                <field name="amount_shu_simpanan_anggota"/>
+                                <field name="amount_shu_pinjaman_anggota"/>
+                                <field name="amount_shu_anggota"/>
+                                
+                            </group>
+
+<!-- 
+                            <group>
+                                <field name="amount_shu"/>
+                                <field name="amount_shu_simpanan"/>
+                                <field name="amount_shu_pinjaman"/>
+                                
+                            </group> -->
+                        </group>
+                        <!-- <notebook>
+                            <page string="Detail">
+                                <field name="shu_transaksi_detail_ids"/>
+                            </page>
+                            
+                        </notebook> -->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="shu_transaksi_line_tree" model="ir.ui.view">
+            <field name="name">Shu Transaksi Line Tree</field>
+            <field name="model">shu.transaksi.line</field>
+            <field name="arch" type="xml">
+                <tree string="Shu Transaksi Line Tree">
+                    <field name="name"/>
+                        
+                                <field name="date"/>
+                                <field name="shu_transaksi_id"/>
+                                <field name="partner_id"/>
+                                <field name="amount_shu_simpanan_anggota" sum="amount_shu_simpanan_anggota"/>
+                                <field name="amount_shu_pinjaman_anggota" sum="amount_shu_pinjaman_anggota"/>
+                                <field name="amount_shu_anggota" sum="amount_shu_anggota"/>
+                                
+                                <field name="state"/>
+                             
+                                
+                </tree>
+            </field>
+        </record>
+
+
+
+
+        <record id="master_shu_komponen_form" model="ir.ui.view">
+            <field name="name">Master SHU Komponen</field>
+            <field name="model">master.shu.komponen</field>
+            <field name="arch" type="xml">
+                <form string="Master SHU Komponen Form">
+                    <header>
+                        <!-- <button name="create_invoice" string="Create Invoice" type="object" class="oe_highlight"
+                                attrs="{'invisible': [('invoice_id', '!=', False)]}"/> -->
+                   </header>
+                    <sheet>
+                        <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+
+                        </h1>
+                        </div>
+                        <group>
+                            <group>
+                                
+                                <field name="shu_type"/>
+                                <field name="state"/>
+                                
+                                
+                            </group>
+                           <!--  <group>
+                                <field name="shu_komponen_id"/>
+                                <field name="shu_persen"/>
+                                
+                            </group> -->
+
+
+                            <!-- <group>
+                                <field name="note_field"/>
+                                
+                                
+                            </group> -->
+                        </group>
+                        <!-- <notebook>
+                            <page string="Detail">
+                                <field name="master_shu_detail_ids"/>
+                            </page>
+                            
+                        </notebook> -->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="master_shu_komponen_tree" model="ir.ui.view">
+            <field name="name">Master SHU Komponen</field>
+            <field name="model">master.shu.komponen</field>
+            <field name="arch" type="xml">
+                <tree string="Master SHU Komponen Tree">
+                    <field name="name"/>
+                        
+                                <!-- <field name="date"/> -->
+                                
+                                <field name="shu_type"/>
+                                <field name="state"/>
+                               
+                                
+                </tree>
+            </field>
+        </record>
+
+
+    </data>
+
+</odoo>

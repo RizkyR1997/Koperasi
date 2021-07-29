@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data noupdate="0">
+        <!-- Add you code here -->
+
+        <!-- validasi.transaksi form view -->
+        <record id="pinjaman_tunggakan_view_form" model="ir.ui.view">
+            <field name="name">pinjaman.tunggakan.view.form</field>
+            <field name="model">pinjaman.tunggakan</field>
+            <field name="arch" type="xml">
+                <form string="">
+                <header>
+                    <button name="action_get_trasaction" string="Get Trasanction" type="object" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_validate" string="Validate" type="object" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                    <button name="action_posted" string="Posted" type="object" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'validate')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_journal" type="object" class="oe_stat_button" icon="fa-pencil-square-o"></button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="date"/>
+                                <!-- <field name="partner_id" />
+                                <field name="pinjaman_id" domain="[('partner_id','=', partner_id)]"/>
+                                <field name="jangka_waktu"/>  -->                           
+                                <!-- <field name="jumlah_pokok_perbulan"/>
+                                <field name="jumlah_jasa_perbulan"/>
+                                <field name="master_pinjaman_tunggakan_id"/>
+                                <field name="jumlah_kali_jasa"/> -->
+                                <field name="jumlah_tunggakan"/>
+                            </group>
+                            <group>
+                                <field name="sisa_total_pokok"/>
+                                <field name="sisa_total_jasa"/>
+                                <field name="selisih_total"/>
+                                <!-- <field name="journal_count"/>
+                                <field name="account_move_id"/> -->
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Detail">
+                                <field name="tunggakan_detail_ids">
+                                    <tree>
+                                        <!-- <field name="angsuran_ke"/> -->
+                                        <field name="date"/>
+                                        <field name="status"/>
+                                        <!-- <field name="tunggakan_id"/> -->
+                                        <field name="pinjaman_id"/>
+                                        <field name="pinjaman_detail_id"/>
+                                        <field name="partner_id"/>
+                                        <field name="angsuran_ke"/>
+                                        <field name="tgl_angsuran"/>
+                                        <field name="type_pinjaman"/>
+                                        <field name="jumlah_pokok"/>
+                                        <field name="jumlah_jasa"/>
+                                        <field name="jumlah_angsuran"/>
+                                        <field name="actual_angsuran"/>
+                                    </tree>
+                                </field>
+                            </page>
+                                <!--  <page string="Invoice">
+                                    <field name="invoice_ids"/>
+                                </page> -->
+                            <page string="Note">
+                                <field name="note_field"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="pinjaman_tunggakan_view_tree" model="ir.ui.view">
+            <field name="name">Pinjaman tunggakan Tree</field>
+            <field name="model">pinjaman.tunggakan</field>
+            <field name="arch" type="xml">
+                <tree string="Pinjaman tunggakan Tree">
+                    <!-- <field name="name"/> -->
+                        
+                            <field name="name"/>
+                            <field name="date"/>
+                            <!-- <field name="partner_id"/>
+                            <field name="pinjaman_id"/>
+                            <field name="jangka_waktu"/>
+                            <field name="master_pinjaman_tunggakan_id"/>
+                            <field name="jumlah_kali_jasa"/> -->
+                            <field name="jumlah_tunggakan"/>
+                            <field name="note_field"/>
+                            <field name="tunggakan_detail_ids"/>                             
+                </tree>
+            </field>
+        </record>
+
+
+
+
+
+        <record id="pinjaman_tunggakan_detail_view_form" model="ir.ui.view">
+            <field name="name">pinjaman.tunggakan.detail.view.form</field>
+            <field name="model">pinjaman.tunggakan.detail</field>
+            <field name="arch" type="xml">
+                <form string="">
+                <header>
+                    <!-- <button name="action_get_trasaction" string="Get Trasanction" type="object" class="oe_highlight"/>
+                    <field name="state" widget="statusbar"/> -->
+                </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="date"/>
+                            <field name="status"/>
+                            <field name="tunggakan_id"/>
+                            <!-- <field name="pinjaman_id"/> -->
+                            <field name="pinjaman_detail_id"/>
+                            <field name="partner_id"/>
+                            <field name="angsuran_ke"/>
+                            <field name="tgl_angsuran"/>
+                            <field name="type_pinjaman"/>
+                            <field name="jumlah_pokok"/>
+                            <field name="jumlah_jasa"/>
+                            <field name="jumlah_angsuran"/>
+                            <field name="actual_angsuran"/>
+                            
+                        </group>
+
+                        <!-- <notebook>
+                            <page string="Detail">
+                                <field name="tunggakan_detail_ids">                         
+                                </field>
+                            </page>
+                               
+                            <page string="Note">
+                                <field name="note_field"/>
+                            </page>
+                        </notebook> -->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="pinjaman_tunggakan_detail_view_tree" model="ir.ui.view">
+            <field name="name">Pinjaman tunggakan Detail Tree</field>
+            <field name="model">pinjaman.tunggakan.detail</field>
+            <field name="arch" type="xml">
+                <tree string="Pinjaman tunggakan Detail Tree">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="status"/>
+                    <field name="tunggakan_id"/>
+                    <!-- <field name="pinjaman_id"/> -->
+                    <field name="pinjaman_detail_id"/>
+                    <field name="partner_id"/>
+                    <field name="angsuran_ke"/>
+                    <field name="tgl_angsuran"/>
+                    <field name="type_pinjaman"/>
+                    <field name="jumlah_pokok"/>
+                    <field name="jumlah_jasa"/>
+                    <field name="jumlah_angsuran"/>
+                    <field name="actual_angsuran"/>
+                            
+                </tree>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="view_pinjaman_details_search" model="ir.ui.view">
+            <field name="name">pinjaman.details.search</field>
+            <field name="model">pinjaman.details</field>
+            <field name="arch" type="xml">
+                <search string="Pinjaman">
+                    <field name="partner_id" />
+                </search>
+            </field>
+        </record>
+
+        <record id="pinjaman_details_form" model="ir.ui.view">
+            <field name="name">Pinjaman details</field>
+            <field name="model">pinjaman.details</field>
+            <field name="arch" type="xml">
+                <form string="Pinjaman details Form">
+                    <header>
+                        <button name="create_invoice" string="Create Invoice" type="object" class="oe_highlight"
+                            attrs="{'invisible': [('invoice_id', '!=', False)]}" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="pinjaman_id" />
+                                <field name="partner_id" />
+                                <field name="policy_id" />
+                                <field name="angsuran_ke" />
+                                <field name="tgl_angsuran" />
+                            </group>
+                            <group>
+                                <field name="type_pinjaman" />
+                                <field name="type_pelunasan" />
+
+                            </group>
+
+
+                            <group>
+                                <field name="jumlah_pokok" />
+                                <field name="jumlah_jasa" />
+
+                                <field name="rencana_angsuran" />
+                                <field name="actual_angsuran" />
+                                <field name="saldo_pinjaman" />
+                                <field name="status" />
+                                <field name="account_move_id" />
+                            </group>
+                            <group>
+                                <field name="invoice_id" />
+                                <field name="jumlah_pokok_perbulan" />
+                                <field name="jumlah_jasa_perbulan" />
+                                <field name="jumlah_angsuran" />
+                            </group>
+
+                            <group>
+                                <field name="nunggak_hari" />
+
+
+                            </group>
+
+                        </group>
+                        <notebook>
+                            <page string="Note">
+                                <field name="note_field" />
+                            </page>
+                            <!-- <page string="Invoice">
+                                <field name="invoice_ids"/>
+                            </page>
+                            <page string="Image">
+                                <field name="detail_image_ids"/>
+                            </page> -->
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="pinjaman_details_tree" model="ir.ui.view">
+            <field name="name">Pinjaman details</field>
+            <field name="model">pinjaman.details</field>
+            <field name="arch" type="xml">
+                <tree string="Pinjaman details Tree">
+                    <field name="name" />
+
+                    <field name="pinjaman_id" />
+                    <field name="partner_id" />
+                    <field name="policy_id" />
+                    <field name="angsuran_ke" />
+                    <field name="tgl_angsuran" />
+                    <field name="type_pinjaman" />
+                    <field name="type_pelunasan" />
+                    <field name="jumlah_pokok" sum="jumlah_pokok" />
+                    <field name="jumlah_jasa" sum="jumlah_jasa" />
+                    <field name="jumlah_angsuran" sum="jumlah_angsuran" />
+                    <field name="rencana_angsuran" />
+                    <field name="actual_angsuran" sum="actual_angsuran" />
+                    <field name="saldo_pinjaman" />
+                    <!-- <field name="status"/> -->
+                    <field name="invoice_id" />
+                    <field name="jumlah_pokok_perbulan" />
+                    <field name="jumlah_jasa_perbulan" />
+                    <field name="status" />
+                    <!-- <field name="state"/> -->
+                    <field name="state" invisible="1" />
+                    <field name="nunggak_hari" />
+                    <button name="action_bayar_angsuran" string="Bayar" type="object" class="btn-success"
+                        attrs="{'invisible': ['|',('status','=','paid'),('type_pinjaman', '=', 'outbound')]}" />
+
+                    <button name="action_batal_bayar_angsuran" string="Batal" type="object" class="btn-danger"
+                        attrs="{'invisible':['|',('state', '!=', 'draft'),('type_pinjaman','=','outbound')]}" />
+                    <field name="account_move_id" />
+                    <field name="pelunasan_id" />
+
+                </tree>
+            </field>
+        </record>
+    </data>
+
+</odoo>

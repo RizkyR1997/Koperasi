@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_account_expenses_pivot" model="ir.ui.view">
+         <field name="name">account.expenses.report.pivot</field>
+         <field name="model">account.expenses.report</field>
+         <field name="arch" type="xml">
+             <pivot string="Biaya Operasional Analysis" disable_linking="True">
+                 <field name="product_id" type="col"/>
+                 <field name="date" interval="day" type="row"/>
+                 <field name="date_back" interval="day" type="row"/>
+                 <field name="partner_id" type="row"/>
+                 <field name="subtotal" type="measure"/>
+             </pivot>
+         </field>
+    </record>
+
+    <record id="view_account_expenses_graph" model="ir.ui.view">
+         <field name="name">account.expenses.report.graph</field>
+         <field name="model">account.expenses.report</field>
+         <field name="arch" type="xml">
+             <graph string="Biaya Operasional Analysis" type="bar">
+                 <field name="date" type="row" interval="day"/>
+                 <field name="total" type="measure"/>
+             </graph>
+         </field>
+    </record>
+
+    <record id="view_account_expenses_search" model="ir.ui.view">
+        <field name="name">account.expenses.report.search</field>
+        <field name="model">account.expenses.report</field>
+        <field name="arch" type="xml">
+            <search string="Biaya Operasional Analysis">
+                <field name="date"/>
+                <filter string="Date" name="date" invisible="1" date="date" default_period="this_month"/>
+                <filter name="Draft" string="Draft" domain="[('state','=', 'draft')]"/>
+                <filter name="Confirm" string="Confirm" domain="[('state','=', 'confirm')]"/>
+                <filter name="Reconciled" string="Reconciled" domain="[('state','not in',('draft', 'cancel', 'confirm'))]"/>
+                <filter name="state" domain="[('state','=', 'cancel')]"/>
+                <separator/>
+                <field name="create_uid"/>
+                <field name="product_id"/>
+                <field name="partner_id"/>
+                <group expand="0" string="Group By">
+                    <filter string="Create By" name="create_uid" context="{'group_by':'create_uid'}"/>
+                    <filter string="Partner" name="partner_id" context="{'group_by':'partner_id'}"/>
+                    <filter string="Kenek" name="kenek" context="{'group_by':'kenek'}"/>
+                    <filter string="Product" name="product_id" context="{'group_by':'product_id'}"/>
+                    <filter string="Status" name="state"  context="{'group_by':'state'}"/>
+                    <separator/>
+                    <filter string="Tanggal" name="date" context="{'group_by':'date'}"/>
+                    <filter string="Tanggal Kembali" name="confirm_month" context="{'group_by':'date_back:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_expenses_report_all" model="ir.actions.act_window">
+        <field name="name">Biaya Operasional Analysis</field>
+        <field name="res_model">account.expenses.report</field>
+        <!-- <field name="view_type">form</field> -->
+        <!-- <field name="view_mode">pivot,graph</field> -->
+        <field name="view_id"></field>  <!-- force empty -->
+        <field name="search_view_id" ref="view_account_expenses_search"/>
+        <field name="context">{'search_default_Confirm':1, 'time_ranges': {'field':'date', 'range':'last_30_days'}}</field>
+        <field name="help">This report performs analysis on your Biaya Operasional.</field>
+    </record>
+</odoo>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="trial_balance_new_report">
+            <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <!-- <t t-set="o" t-value="o.with_context({})"/> -->
+                <div class="page">
+                    <!-- <div class="oe_structure"/> -->
+                    <h1 style="text-align:center">Report Trial Balance</h1>
+
+                    <!-- <div style="padding-bottom:40px;"></div> -->
+                    <!-- <t t-if="date_start">
+                        <t t-set="start_date" t-value="date_start"/>
+                    </t> -->
+                    <!-- <t t-if="not date_start">
+                        <t t-set="start_date" t-value="'-'"/>
+                    </t> -->
+                    <!-- <t t-if="date_end">
+                        <t t-set="end_date" t-value="date_end"/>
+                    </t> -->
+                    <!-- <t t-if="not date_end">
+                        <t t-set="end_date" t-value="'-'"/>
+                    </t> -->
+                    <div style="padding-bottom:5px;">Periode : <span t-esc="date_start"/> s/d <span t-esc="date_end"/></div>
+
+                    <!-- <div style="padding-bottom:40px;"></div> -->
+
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th><strong>No</strong></th>
+                                <th><strong>Code</strong></th>
+                                <th><strong>Account</strong></th>
+                                <th><strong>Type</strong></th>                              
+                                <th class="text-right"><strong>Opening</strong></th>
+                                <th class="text-right"><strong>Debet</strong></th>
+                                <th class="text-right"><strong>Credit</strong></th>
+                                <th class="text-right"><strong>Balance</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="t_opening" t-value="0"/>
+                            <t t-set="t_debet" t-value="0"/>
+                            <t t-set="t_credit" t-value="0"/>
+                            <t t-set="t_closing" t-value="0"/>
+
+                            <tr t-foreach="docs" t-as="line">
+                                <t t-set="t_opening" t-value="t_opening+line['opening']"/>
+                                <t t-set="t_debet" t-value="t_debet+line['debit']"/>
+                                <t t-set="t_credit" t-value="t_credit+line['credit']"/>
+                                <t t-set="t_closing" t-value="t_closing+line['balance']"/>
+                                <td>
+                                    <span t-att-style="style" t-esc="line['id']"/>
+                                </td>
+
+                                <td>
+                                    <span t-att-style="style" t-esc="line['code']"/>
+                                </td>
+
+                                <td>
+                                    <span t-att-style="style" t-esc="line['account']"/>
+                                </td>
+                                <td>
+                                    <span t-att-style="style" t-esc="line['type']"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-att-style="style" t-esc="'{0:,.2f}'.format(line['opening']).replace(',',',')"/>
+                                </td>
+                                <td class="text-right">
+                                    <!-- <span t-esc="'{0:,.2f}'.format(line[4]).replace(',',',')"/> -->
+                                    <span t-att-style="style" t-esc="'{0:,.2f}'.format(line['debit']).replace(',',',')"/>
+                                </td>
+                                <td class="text-right">
+                                    <!-- <span t-esc="'{0:,.2f}'.format(line[5]).replace(',',',')"/> -->
+                                    <span t-att-style="style" t-esc="'{0:,.2f}'.format(line['credit']).replace(',',',')"/>
+                                </td>
+                                <td class="text-right">
+                                    <!-- <span t-esc="'{0:,.2f}'.format(line[6]).replace(',',',')"/> -->
+                                    <span t-att-style="style" t-esc="'{0:,.2f}'.format(line['balance']).replace(',',',')"/>
+                                </td>
+                                
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td> 
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    <strong>Total</strong>
+                                </td>
+                                <td>
+                                    
+                                </td>                                
+                                <td class="text-right">
+                                    <strong><span t-esc="'{0:,.2f}'.format(t_opening).replace(',',',')"/></strong>
+                                </td>
+                                <td class="text-right">
+                                    <strong><span t-esc="'{0:,.2f}'.format(t_debet).replace(',',',')"/></strong>
+                                </td>
+                                <td class="text-right">
+                                    <strong><span t-esc="'{0:,.2f}'.format(t_credit).replace(',',',')"/></strong>
+                                </td>
+                                <td class="text-right">
+                                    <strong><span t-esc="'{0:,.2f}'.format(t_closing).replace(',',',')"/></strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="padding-bottom:40px;" class="oe_structure"/>
+                    <div>Printing By: <span t-field="user.name"/></div>
+                    
+                </div>
+                </t>
+            </t>
+        </template>
+
+<!--         <template id="cpm_trial_balance_report_template">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="cpm_trial_balance_report.cpm_trial_balance_document"/>
+                </t>
+            </t>
+        </template> -->
+
+        <report
+            id="trial_balance_new_wizard_report_action" 
+            string="Trial Balance Report"
+            model="trial.balance.new.wizard" 
+            report_type="qweb-pdf"
+            name="tj_bankcash.trial_balance_new_report" 
+            file="tj_bankcash.trial_balance_new_report" 
+            />
+
+    </data>
+</odoo>

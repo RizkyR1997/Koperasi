@@ -1,0 +1,81 @@
+<odoo>
+    <data>
+         <record id="res_partner_tj_bankcash_view_inherit1" model="ir.ui.view">
+            <field name="name">res.partner.tj.bankcash.inherit1</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="contact_sales_id"/>
+                </xpath>
+
+                <!-- <xpath expr="//field[@name='ref']" position="after">
+                    <field name="expenses"/>
+                    <field name="property_account_expenses_id"/>
+                </xpath> -->
+                 <!-- <xpath expr="//field[@name='property_account_payable_id']" position="after">
+                    <field name="property_account_expenses_id"/>
+                </xpath> -->
+            </field>
+        </record>
+
+        <!-- <record id="hr_employee_related_res_partner" model="ir.ui.view">
+            <field name="name">hr.employee.related.res.partner</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="partner_id"/>
+                    <field name="is_mkt"/>
+                    <field name="code_mkt"/>
+                    <field name="is_mekanik"/>
+                    <field name="is_karu"/>
+                    <field name="is_kasie"/>
+                    <field name="is_request"/>
+
+                    <field name="is_op_persiapan"/>
+                    <field name="is_op_dyeing"/>
+                    <field name="is_op_printing"/>
+                    <field name="is_tracer"/>
+                    <field name="is_profer"/>
+                    <field name="is_engraver"/>
+                    <field name="is_designer"/>                    
+                </xpath>
+            </field>
+        </record> -->
+
+        <!-- <record id="hr_employee_related_tree2" model="ir.ui.view">
+            <field name="name">hr.employee.related.tree2</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+                <field name="job_id" position="after">
+                    <field name="partner_id"/>
+                    <field name="is_mkt"/>
+                    <field name="code_mkt"/>
+                    <field name="is_mekanik"/>
+                    <field name="is_karu"/>
+                    <field name="is_kasie"/>
+                    <field name="is_request"/>                    
+                </field>
+                
+            </field>
+        </record> -->
+
+
+        <!-- <record id="bankcashline_view_inherit_tree" model="ir.ui.view">
+            <field name="name">bankcashline.form.inherit</field>
+            <field name="model">account.bank.statement.line</field>
+            <field name="inherit_id" ref="account.view_bank_statement_line_tree"/>
+            <field name="arch" type="xml">
+
+                <field name="statement_id" position="before">
+                    <field name="number"/>
+                </field>
+
+            </field>
+        </record> -->
+
+    </data>
+</odoo>

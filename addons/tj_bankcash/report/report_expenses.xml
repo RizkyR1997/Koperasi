@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright selasa, 03-03-2020 Sangkuriang Project-->
+<odoo>
+    <data>
+
+        <template id="report_account_expenses_document">
+            <t t-call="report.external_layout">
+                <t t-set="o" t-value="o.with_context({})"/>
+                <div class="page">
+                    <div class="oe_structure"/>
+
+                    <h3>
+                        <div class="text-center">
+                            <strong>EXPENSES</strong>
+                        </div>
+                    </h3>
+
+<!--                    <div class="row">-->
+<!--                        <div class="col-xs-6" style="margin-top:0px">-->
+<!--                            <strong>Nomor :-->
+<!--                                <span t-field="o.name"/>-->
+<!--                            </strong>-->
+<!--                        </div>-->
+<!--                        <div class="col-xs-5 pull-right text-right" style="margin-top:0px">-->
+<!--                            <strong>Tanggal :-->
+<!--                                <span t-field="o.tanggal"/>-->
+<!--                            </strong>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    <t t-if="o.expenses_line">-->
+<!--                        <t t-set="total_sum" t-value="0"/>-->
+
+<!--                        <table class="table table-condensed able table-striped" style="margin-top:5px">-->
+<!--                            <thead>-->
+<!--                                <tr>-->
+<!--                                    <th class="text-left">-->
+<!--                                        <strong>Jenis</strong>-->
+<!--                                    </th>-->
+<!--                                    <th class="text-center">-->
+<!--                                        <strong>Qty</strong>-->
+<!--                                    </th>-->
+<!--                                    <th class="text-center">-->
+<!--                                        <strong>Satuan</strong>-->
+<!--                                    </th>-->
+<!--                                    <th class="text-right">-->
+<!--                                        <strong>Harga Satuan</strong>-->
+<!--                                    </th>-->
+<!--                                    <th class="text-right">-->
+<!--                                        <strong>Jumlah Total</strong>-->
+<!--                                    </th>-->
+<!--                                </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody t-foreach="o.expenses_line" t-as="line_ids">-->
+<!--                                <tr>-->
+<!--                                    <td class="text-left">-->
+<!--                                        <span t-field="line_ids.product_id"/>-->
+<!--                                    </td>-->
+<!--                                    <td class="text-center">-->
+<!--                                        <span t-field="line_ids.quantity"/>-->
+<!--                                    </td>-->
+<!--                                    <td class="text-center">-->
+<!--                                        <span t-field="line_ids.product_uom.name"/>-->
+<!--                                    </td>-->
+<!--                                    <td class="text-right">Rp.-->
+<!--                                        <span t-esc="'{0:,.2f}'.format(line_ids.unit_price)"/>-->
+<!--                                    </td>-->
+<!--                                    <td class="text-right">Rp.-->
+<!--                                        <span t-esc="'{0:,.2f}'.format(line_ids.subtotal)"/>-->
+<!--                                        <t t-set="total_sum"-->
+<!--                                           t-value="total_sum + line_ids.subtotal"/>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                            </tbody>-->
+<!--                            <tr class="text-right" style="font-size:12pt">-->
+<!--                                <th/>-->
+<!--                                <th/>-->
+<!--                                <th/>-->
+<!--                                <th>-->
+<!--                                    <strong>Jumlah Total</strong>-->
+<!--                                </th>-->
+<!--                                <th class="text-right">Rp.-->
+<!--                                    <strong>-->
+<!--                                        <span t-esc="'{0:,.2f}'.format(total_sum)"/>-->
+<!--                                    </strong>-->
+<!--                                </th>-->
+<!--                                <th/>-->
+<!--                            </tr>-->
+<!--                        </table>-->
+                        <table class="table table-condensed" style="margin-top:-10px">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">
+                                        <strong>PENERIMA</strong>
+                                    </th>
+                                    <th class="text-right">
+                                        <strong>HORMAT KAMI</strong>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-left">
+                                        <br/>
+                                        <br/>
+                                        <span/>
+                                        .............................
+                                    </td>
+                                    <td class="text-right">
+                                        <br/>
+                                        <br/>
+                                        <span/>
+                                        .............................
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">
+                                        <span t-field="o.description"/>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+<!--                    </t>-->
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </template>
+        <template id="report_account_expenses_template">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="tj_bankcash.report_account_expenses_document"/>
+                </t>
+            </t>
+        </template>
+
+        <report
+                string="Print Expenses"
+                id="action_report_account_expenses"
+                model="account.expenses"
+                report_type="qweb-pdf"
+                name="tj_bankcash.report_account_expenses_template"
+                file="tj_bankcash.report_account_expenses_template"
+        />
+    </data>
+</odoo>

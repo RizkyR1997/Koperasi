@@ -1,0 +1,246 @@
+<odoo>
+    <data>
+        <record id="view_expenses_tree_custom1" model="ir.ui.view">
+            <field name="name">expenses.view_expenses_tree_custom1</field>
+            <field name="model">account.expenses</field>
+            <!-- <field name="view_mode">tree</field> -->
+            <field name="arch" type="xml">
+                <tree decoration-muted="state in ['cancel']" edit="false">
+                    <field name="id" invisible="1"/>
+                    <field name="date"/>
+                    <field name="date_back"/>
+                    <field name="name"/>
+                    <field name="ref"/>
+                    <field name="operation_type"/>
+                    <field name="journal_id"/>
+                    <field name="account_id"/>
+                    <field name="statement_id"/>
+                    <field name="statement_line_id"/>
+                    <field name="partner_id"/>
+                    <field name="no_mobil"/>
+                    <field name="jenis_mobil"/>
+<!--                    <field name="do_bkb_id"/>-->
+<!--                    <field name="region_id" invisible="1"/>-->
+<!--                    <field name="cluster_id" invisible="1"/>-->
+<!--                    <field name="kategori1_id" invisible="1"/>-->
+<!--                    <field name="kategori2_id" invisible="1"/>-->
+<!--                    <field name="kategori3_id" invisible="1"/>-->
+<!--                    <field name="kategori4_id" invisible="1"/>-->
+<!--                    <field name="divisi1_id"/>-->
+<!--                    <field name="divisi2_id"/>-->
+<!--                    <field name="jalur_id"/>-->
+<!--                    <field name="dc1_id" invisible="1"/>-->
+                    <field name="note"/>
+                    <field name="total" sum="Total"/>
+                    <field name="kasbon" sum="Total"/>
+                    <field name="selisih" sum="Total"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_expenses_form_custom1" model="ir.ui.view">
+            <field name="name">expenses.view_expenses_form_custom1</field>
+            <field name="model">account.expenses</field>
+            <!-- <field name="view_mode">form</field> -->
+            <field name="arch" type="xml">
+                <form string="Biaya Operasional">
+                    <header>
+                        <button name="action_draft" states="cancel" string="Set To Draft"
+                                type="object"/>
+                        <button name="action_confirm" class="oe_highlight" states="draft" string="Confirm"
+                                type="object"/>
+                        <button name="action_cancel" states="draft,confirm" string="Cancel" type="object"/>
+                        <button name="action_done" class="oe_highlight" states="confirm" string="Done" type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,cancel,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" name="button_journal_entries" string="Journal Items"
+                                    type="object" icon="fa-bars"/>
+                        </div>
+                        <field name="id" invisible="1"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="operation_type" widget="radio"/>
+                                       <!-- attrs="{'readonly': [('state', '!=', 'draft')]}" -->
+                                <field name="partner_id"
+                                       options="{&quot;always_reload&quot;: True, &quot;no_quick_create&quot;: True, &quot;no_create&quot;: True, &quot;no_open&quot;: True}"
+                                       attrs="{'required': True, 'readonly': [('state', '!=', 'draft')]}"
+                                       domain="[('expenses', '=', True)]" string="Employee"/>
+                                <field name="journal_id" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                       required="1"
+                                       invisible="0"/>
+                                <field name="account_id" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                       required="1"
+                                       invisible="0"/>
+                                <field name="ref" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="no_mobil" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="jenis_mobil" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="statement_id"
+                                       attrs="{'readonly': [('state', 'in', ('confirm', 'done', 'cancel'))]}"
+                                       options="{'no_create': True, 'no_open': True}"/>
+                                <field name="statement_line_id"
+                                       attrs="{'readonly': [('state', 'in', ('confirm', 'done', 'cancel'))]}"
+                                       options="{'no_create': True, 'no_open': True}"/>
+                            </group>
+                            <group>
+                                <field name="date"
+                                       attrs="{'required': True, 'readonly': [('state', 'in', ('confirm', 'done', 'cancel'))]}"/>
+                                <field name="date_back"
+                                       attrs="{'required': True, 'readonly': [('state', 'in', ('confirm', 'done', 'cancel'))]}"/>
+<!--                                <field name="do_bkb_id"-->
+<!--                                       attrs="{'readonly': [('state', 'in', ('confirm', 'reconcile', 'cancel'))]}"-->
+<!--                                       options="{'no_create': True, 'no_open': True}"/>-->
+<!--                                <field name="region_id"-->
+<!--                                       attrs="{'readonly': [('state', 'in', ('confirm', 'reconcile', 'cancel'))], 'invisible': True}"-->
+<!--                                       options="{'no_create': True, 'no_open': True}"/>-->
+<!--                                <field name="divisi1_id"-->
+<!--                                       attrs="{'readonly': [('state', 'in', ('confirm', 'reconcile', 'cancel'))]}"-->
+<!--                                       options="{'no_create': True, 'no_open': True}"/>-->
+<!--                                <field name="divisi2_id"-->
+<!--                                       attrs="{'readonly': [('state', 'in', ('confirm', 'reconcile', 'cancel'))]}"-->
+<!--                                       options="{'no_create': True, 'no_open': True}"/>-->
+<!--                                <field name="kategori1_id"-->
+<!--                                       attrs="{'readonly': [('state', 'in', ('confirm', 'reconcile', 'cancel'))], 'invisible': True}"-->
+<!--                                       options="{'no_create': True, 'no_open': True}"/>-->
+<!--                                <field name="kategori2_id"-->
+<!--                                       attrs="{'readonly': [('state', 'in', ('confirm', 'reconcile', 'cancel'))], 'invisible': True}"-->
+<!--                                       options="{'no_create': True, 'no_open': True}"/>-->
+<!--                                <field name="kategori3_id"-->
+<!--                                       attrs="{'readonly': [('state', 'in', ('confirm', 'reconcile', 'cancel'))], 'invisible': True}"-->
+<!--                                       options="{'no_create': True, 'no_open': True}"/>-->
+<!--                                <field name="kategori4_id"-->
+<!--                                       attrs="{'readonly': [('state', 'in', ('confirm', 'reconcile', 'cancel'))], 'invisible': True}"-->
+<!--                                       options="{'no_create': True, 'no_open': True}"/>-->
+<!--                                <field name="jalur_id"-->
+<!--                                       attrs="{'readonly': [('state', 'in', ('confirm', 'reconcile', 'cancel'))]}"-->
+<!--                                       options="{'no_create': True, 'no_open': True}"/>-->
+<!--                                <field name="dc1_id"-->
+<!--                                       attrs="{'readonly': [('state', 'in', ('confirm', 'reconcile', 'cancel'))], 'invisible': True}"-->
+<!--                                       options="{'no_create': True, 'no_open': True}"/>-->
+<!--                                <field name="kelompok_id"-->
+<!--                                       attrs="{'readonly': [('state', 'in', ('confirm', 'reconcile', 'cancel'))], 'invisible': True}"-->
+<!--                                       options="{'no_create': True, 'no_open': True}"/>-->
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Expenses Lines">
+                                <field name="expenses_line"
+                                       attrs="{'readonly': [('state', 'in', ('confirm', 'done', 'cancel'))]}">
+                                    <tree string="Expenses Lines" editable="bottom">
+                                        <field name="state" invisible="1"/>
+                                        <!-- <field name="account_id" invisible="1"/> -->
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="partner_id" string="Vendor"/>
+                                        <field name="product_id"
+                                               attrs="{'required': True, 'readonly': [('state', 'in', ('confirm', 'done', 'cancel'))]}"
+                                               context="{'partner_id':parent.partner_id, 'quantity':quantity, 'product_uom':product_uom, 'unit_price':unit_price}"
+                                               force_save="1"
+                                               options="{'no_create': True, 'no_create_edit':True}"
+                                               domain="[('expenses_ok', '=', True)]"/>
+                                        <field name="account_id"
+                                               attrs="{'required': True, 'readonly': [('state', 'in', ('confirm', 'done', 'cancel'))]}"/>
+                                        <field name="account_budget_id"
+                                               attrs="{'required': True, 'readonly': [('state', 'in', ('confirm', 'done', 'cancel'))]}"/>
+                                        <field name="name"
+                                               attrs="{'required': True, 'readonly': [('state', 'in', ('confirm', 'done', 'cancel'))]}"/>
+                                        <field name="quantity"
+                                               attrs="{'required': True, 'readonly': [('state', 'in', ('confirm', 'done', 'cancel'))]}"
+                                               sum="Quantity"/>
+                                        <field name="product_uom"
+                                               attrs="{'required': True, 'readonly': [('state', 'in', ('confirm', 'done', 'cancel'))]}"
+                                               options="{'no_create': True, 'no_create_edit':True}"/>
+                                        <field name="unit_price"
+                                               attrs="{'required': True, 'readonly': [('state', 'in', ('confirm', 'done', 'cancel'))]}"
+                                               sum="Unit Price"/>
+                                        <field name="subtotal" widget="monetary" sum="Subtotal"/>
+                                    </tree>
+                                </field>
+                                <group class="oe_subtotal_footer oe_right" colspan="2" name="expenses_total">
+                                    <field name="total" widget="monetary" readonly="True"/>
+                                    <field name="kasbon" widget="monetary" readonly="True"/>
+                                    <field name="kembali" widget="monetary" readonly="True"/>
+                                    <field name="selisih" widget="monetary" readonly="True"/>
+                                </group>
+                                <field name="note" class="oe_inline"
+                                       placeholder="Catatan..."/>
+                                <div class="oe_clear"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_expenses_line_tree_custom1" model="ir.ui.view">
+            <field name="name">expenses.view_expenses_line_tree_custom1</field>
+            <field name="model">account.expenses.line</field>
+            <!-- <field name="view_mode">tree</field> -->
+            <field name="arch" type="xml">
+                <tree decoration-muted="state in ['cancel']" edit="false">
+                    <field name="id" invisible="1"/>
+                    <field name="order_id"/>
+                    <field name="date"/>
+                    <field name="date_back"/>
+                    <field name="operation_type"/>
+                    <field name="no_mobil"/>
+                    <field name="jenis_mobil"/>
+<!--                    <field name="divisi1_id"/>-->
+<!--                    <field name="divisi2_id"/>-->
+<!--                    <field name="jalur_id"/>-->
+                    <field name="partner_id"/>
+                    <field name="kenek"/>
+                    <field name="statement_id"/>
+                    <field name="statement_line_id"/>
+                    <field name="product_id"/>
+                    <field name="account_id"/>
+                    <field name="account_budget_id"/>
+                    <field name="name"/>
+                    <field name="quantity" sum="Sum Qty"/>
+                    <field name="product_uom"/>
+                    <field name="unit_price" sum="Sum Price"/>
+                    <field name="subtotal" sum="Sum Subtotal"/>
+                    <field name="state"/>
+                    <field name="note"/>
+                </tree>
+            </field>
+            
+        </record>
+
+        <record id="action_account_expenses_tree1" model="ir.actions.act_window">
+            <field name="name">Journal Items: Biaya Operasional</field>
+            <field name="res_model">account.move</field>
+            <!-- <field name="view_type">form</field> -->
+            <!-- <field name="view_mode">tree,kanban,form,pivot,graph,activity</field> -->
+            <field eval="False" name="view_id"/>
+            <field name="context">{'create': False, 'edit': False, 'delete': False}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Biaya Operasional
+                </p>
+            </field>
+        </record>
+
+        <record id="inherit_idol_journal_expenses" model="ir.ui.view">
+            <field name="name">inherit.idol.journal.expenses</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type']" position="after">
+                    <field name="set_expenses" />
+               </xpath>                                              
+            </field>
+        </record>
+
+    </data>
+</odoo>

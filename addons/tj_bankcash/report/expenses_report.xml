@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="report_expenses_kasbon_document">
+        <t t-call="report.html_container">
+            <!--            <t t-call="report.external_layout">-->
+            <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
+            <style type="text/css">
+                <![CDATA[
+                @font-face {
+                  font-family: 'arial';
+                  font-style: normal;
+                  font-weight: 400;
+                  src: local('arial'), url(/tj_bankcash/static/src/ttf/arial.ttf) format('truetype');
+                }
+                ]]>
+            </style>
+
+            <t t-set="amount_total" t-value="o.amount"/>
+            <t t-if="o.amount &lt; 0">
+                <t t-set="amount_total" t-value="o.amount * -1"/>
+            </t>
+
+            <div class="article"
+                 style="font-family: arial; background-color:white !important;font-size: 11px !important;">
+                <table class="table table-sm" style="width:100%; border: 1px solid black; background-color:white;">
+                    <tbody style="border: 1px solid black;">
+                        <tr>
+                            <td style="border: 1px solid black; font-weight:bold; background-color:white;">
+                                Nama
+                            </td>
+                            <td style="border: 1px solid black; font-weight:bold; background-color:white;"
+                                colspan="2">
+                                <span t-esc="o.partner_id"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; font-weight:bold; background-color:white;">
+                                jalur
+                            </td>
+                            <td style="border: 1px solid black; font-weight:bold; background-color:white;"
+                                colspan="2">
+                                <span t-field="o.jalur_id"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; font-weight:bold; background-color:white;">
+                                No Box
+                            </td>
+                            <td style="border: 1px solid black; font-weight:bold; background-color:white;"
+                                colspan="2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; font-weight:bold; background-color:white;">
+                                Tanggal
+                            </td>
+                            <td style="border: 1px solid black; font-weight:bold; background-color:white;"
+                                colspan="2">
+                                <span t-esc='o.date'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; font-weight:bold; background-color:white;">
+                                Kasbon
+                            </td>
+                            <td style="border: 1px solid black; font-weight:bold; background-color:white;"
+                                colspan="2">
+                                <span t-esc='o.kasbon * -1'/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-center"
+                                style="border: 1px solid black; font-weight:bold; background-color:white;">
+                                Petugas
+                                <br/>
+                                <span t-esc="user.name"></span>
+                            </td>
+                            <td class="text-center"
+                                style="border: 1px solid black; font-weight:bold; background-color:white;">
+                                Selisih
+                            </td>
+                            <td class="text-center"
+                                style="border: 1px solid black; font-weight:bold; background-color:white;">
+                                <span t-esc='o.selisih'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; font-weight:bold; background-color:white;"
+                                colspan="3">
+                                Tanggal Cetak :
+                                <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d-%m-%Y %H:%M:%S')"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--            </t>-->
+        </t>
+    </template>
+
+    <template id="report_expenses_kasbon_template">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="dh_cash_register.report_expenses_kasbon_document" t-lang="o.partner_id.lang"/>
+        </t>
+    </template>
+
+    <data>
+        <record model="report.paperformat" id="paperformat_report_expenses_kasbon">
+            <field name="name">paperformat.report.bank.cash</field>
+            <field name="default" eval="True"/>
+            <field name="format">A5</field>
+            <field name="page_width">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">5</field>
+            <field name="margin_right">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">0</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">5</field>
+            <field name="dpi">90</field>
+        </record>
+        <report
+                id="report_expenses_kasbon"
+                string="Report Expenses"
+                model="account.expenses"
+                report_type="qweb-pdf"
+                file="tj_bankcash.report_expenses_kasbon_template"
+                name="tj_bankcash.report_expenses_kasbon_template"
+                print_report_name="'Report Expenses - %s - %s' % (object.partner_id.name or '', object.name)"
+                paperformat="tj_bankcash.paperformat_report_expenses_kasbon"
+        />
+    </data>
+</odoo>

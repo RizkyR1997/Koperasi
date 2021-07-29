@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <record id="master_simpanan_form" model="ir.ui.view">
+            <field name="name">Master Simpanan</field>
+            <field name="model">master.simpanan</field>
+            <field name="arch" type="xml">
+                <form string="Master Simpanan Form">
+                    <header>
+                        <!-- <button name="create_invoice" string="Create Invoice" type="object" class="oe_highlight"
+                                attrs="{'invisible': [('invoice_id', '!=', False)]}"/> -->
+                   </header>
+                    <sheet>
+                        <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="simpanan_type"/>
+                                <field name="payment_type"/>
+                            </group>
+                            <group>
+                                <field name="amount"/>
+                                <field name="simpanan_duration"/>
+                            </group>
+                            <group>
+                                <field name="account_id"/>
+                                <field name="journal_id"/>
+                                <field name="account_id_in"/>
+                                <field name="account_id_out"/>
+                                <field name="account_id_bunga"/>
+
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Note">
+                                <field name="note_field"/>
+                            </page>
+                            
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="master_simpanan_tree" model="ir.ui.view">
+            <field name="name">Master Simpanan</field>
+            <field name="model">master.simpanan</field>
+            <field name="arch" type="xml">
+                <tree string="Master Simpanan Tree">
+                    <field name="name"/>
+                        
+                                <field name="simpanan_type"/>
+                                <field name="payment_type"/>
+                                <field name="amount"/>
+                                <field name="simpanan_duration"/>                            
+                                <field name="note_field"/>
+                                <field name="account_id"/>
+                                <field name="journal_id"/>
+                                <field name="account_id_in"/>
+                                <field name="account_id_out"/>
+                                <field name="account_id_bunga"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+        <record id="master_simpanan_type_form" model="ir.ui.view">
+            <field name="name">Master Simpanan Type</field>
+            <field name="model">master.simpanan.type</field>
+            <field name="arch" type="xml">
+                <form string="Master Simpanan Type Form">
+                    <header>
+                        <!-- <button name="create_invoice" string="Create Invoice" type="object" class="oe_highlight"
+                                attrs="{'invisible': [('invoice_id', '!=', False)]}"/> -->
+                   </header>
+                    <sheet>
+                        <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        </div>
+                        <!-- <group>
+                            <group>
+                                <field name="simpanan_type"/>
+                                <field name="payment_type"/>
+                            </group>
+                            <group>
+                                <field name="amount"/>
+                                <field name="simpanan_duration"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Note">
+                                <field name="note_field"/>
+                            </page>
+                            
+                        </notebook> -->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="master_simpanan_type_tree" model="ir.ui.view">
+            <field name="name">Master Simpanan Type</field>
+            <field name="model">master.simpanan.type</field>
+            <field name="arch" type="xml">
+                <tree string="Master Simpanan Type Tree">
+                    <field name="name"/>
+                        
+                                <!-- <field name="simpanan_type"/>
+                                <field name="payment_type"/>
+                                <field name="amount"/>
+                                <field name="simpanan_duration"/>                            
+                                <field name="note_field"/> -->
+                </tree>
+            </field>
+        </record>
+
+
+    </data>
+
+</odoo>
