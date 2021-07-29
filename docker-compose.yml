@@ -1,28 +1,26 @@
 version: '2'
 services:
   db:
-    image: postgres:13
-    ports:
-      - "10007:5432"
+    image: postgres:11
+    # container_name: postgres11
     environment:
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
       - POSTGRES_DB=postgres
-    restart: always
+    restart: always             # run as a service
     volumes:
         - ./postgresql:/var/lib/postgresql/data
 
-  web:
-    # image: odoo:14
-    image: koperasi:VERSION
-    build : .
-
+  odoo13:
+    image: odoo:13
+    # container_name: odoo13
     depends_on:
       - db
     ports:
-      - "20007:8069"
+      - "10013:8069"
     tty: true
     command: -- --dev=reload
+#    command: odoo scaffold /mnt/extra-addons/test_module
     environment:
       - HOST=db
       - USER=odoo
@@ -30,4 +28,4 @@ services:
     volumes:
       - ./addons/koperasi-odoo-14:/mnt/extra-addons
       - ./etc:/etc/odoo
-    restart: always
+    restart: always             # run as a service
