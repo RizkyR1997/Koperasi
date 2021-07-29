@@ -11,8 +11,8 @@ services:
     volumes:
         - ./postgresql:/var/lib/postgresql/data
 
-  odoo13:
-    image: odoo:13
+  web:
+    image: odoo:14
     # container_name: odoo13
     depends_on:
       - db
